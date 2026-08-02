@@ -1,5 +1,8 @@
 # AgentGuard
 
-Agent output guardrail API + AI Breakthrough business plan.
+Solo zero-ops **agent output guardrail API** (W2) + reproducible AI Breakthrough business plan.
 
-Production: https://agentguard-swart.vercel.app
+- App: [`product/`](product/) — Next.js on Vercel
+- Live: https://agentguard-swart.vercel.app
+- BP model: [`model/`](model/)
+- Research: [`research/`](research/)

@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="678.612472pt" height="331.273118pt" viewBox="0 0 678.612472 331.273118" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-06-12T23:27:37.708606</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.10.9, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 331.273118 
+L 678.612472 331.273118 
+L 678.612472 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 99.561562 284.206868 
+L 658.452472 284.206868 
+L 658.452472 36.086349 
+L 99.561562 36.086349 
+z
+" style="fill: #ffffff"/>
+   </g>
+   <g id="matplotlib.axis_1">
+    <g id="xtick_1">
+     <g id="line2d_1">
+      <path d="M 170.535631 284.206868 
+L 170.535631 36.086349 
+" clip-path="url(#p06bd67eb0d)" style="fill: none; stroke: #e8e8ed; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_2"/>
+     <g id="text_1">
+      <text style="font-size: 10px; font-family: 'Segoe UI', 'Microsoft YaHei', 'Arial', sans-serif; text-anchor: middle; fill: #86868b" x="170.535631" y="295.109993" transform="rotate(-0 170.535631 295.109993)">$6k</text>
+     </g>
+    </g>
+    <g id="xtick_2">
+     <g id="line2d_3">
+      <path d="M 284.004543 284.206868 
+L 284.004543 36.086349 
+" clip-path="url(#p06bd67eb0d)" style="fill: none; stroke: #e8e8ed; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_4"/>
+     <g id="text_2">
+      <text style="font-size: 10px; font-family: 'Segoe UI', 'Microsoft YaHei', 'Arial', sans-serif; text-anchor: middle; fill: #86868b" x="284.004543" y="295.109993" transform="rotate(-0 284.004543 295.109993)">$8k</text>
+     </g>
+    </g>
+    <g id="xtick_3">
+     <g id="line2d_5">
+      <path d="M 397.473454 284.206868 
+L 397.473454 36.086349 
+" clip-path="url(#p06bd67eb0d)" style="fill: none; stroke: #e8e8ed; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_6"/>
+     <g id="text_3">
+      <text style="font-size: 10px; font-family: 'Segoe UI', 'Microsoft YaHei', 'Arial', sans-serif; text-anchor: middle; fill: #86868b" x="397.473454" y="295.109993" transform="rotate(-0 397.473454 295.109993)">$10k</text>
+     </g>
+    </g>
+    <g id="xtick_4">
+     <g id="line2d_7">
+      <path d="M 510.942365 284.206868 
+L 510.942365 36.086349 
+" clip-path="url(#p06bd67eb0d)" style="fill: none; stroke: #e8e8ed; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_8"/>
+     <g id="text_4">
+      <text style="font-size: 10px; font-family: 'Segoe UI', 'Microsoft YaHei', 'Arial', sans-serif; text-anchor: middle; fill: #86868b" x="510.942365" y="295.109993" transform="rotate(-0 510.942365 295.109993)">$12k</text>
+     </g>
+    </g>
+    <g id="xtick_5">
+     <g id="line2d_9">
+      <path d="M 624.411276 284.206868 
+L 624.411276 36.086349 
+" clip-path="url(#p06bd67eb0d)" style="fill: none; stroke: #e8e8ed; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_10"/>
+     <g id="text_5">
+      <text style="font-size: 10px; font-family: 'Segoe UI', 'Microsoft YaHei', 'Arial', sans-serif; text-anchor: middle; fill: #86868b" x="624.411276" y="295.109993" transform="rotate(-0 624.411276 295.109993)">$14k</text>
+     </g>
+    </g>
+    <g id="text_6">
+     <text style="font-size: 10px; font-family: 'Segoe UI', 'Microsoft YaHei', 'Arial', sans-serif; text-anchor: middle; fill: #86868b" x="379.007017" y="308.813118" transform="rotate(-0 379.007017 308.813118)">第36个月 MRR (USD)</text>
+    </g>
+   </g>
+   <g id="matplotlib.axis_2">
+    <g id="ytick_1">
+     <g id="line2d_11"/>
+     <g id="text_7">
+      <text style="font-size: 10px; font-family: 'Segoe UI', 'Microsoft YaHei', 'Arial', sans-serif; text-anchor: end; fill: #86868b" x="96.061562" y="267.159976" transform="rotate(-0 96.061562 267.159976)">口碑系数 ±50%</text>
+     </g>
+    </g>
+    <g id="ytick_2">
+     <g id="line2d_12"/>
+     <g id="text_8">
+      <text style="font-size: 10px; font-family: 'Segoe UI', 'Microsoft YaHei', 'Arial', sans-serif; text-anchor: end; fill: #86868b" x="96.061562" y="232.722708" transform="rotate(-0 96.061562 232.722708)">月流失率 ±30%</text>
+     </g>
+    </g>
+    <g id="ytick_3">
+     <g id="line2d_13"/>
+     <g id="text_9">
+      <text style="font-size: 10px; font-family: 'Segoe UI', 'Microsoft YaHei', 'Arial', sans-serif; text-anchor: end; fill: #86868b" x="96.061562" y="198.285439" transform="rotate(-0 96.061562 198.285439)">SEO 起量时点 ±4个月</text>
+     </g>
+    </g>
+    <g id="ytick_4">
+     <g id="line2d_14"/>
+     <g id="text_10">
+      <text style="font-size: 10px; font-family: 'Segoe UI', 'Microsoft YaHei', 'Arial', sans-serif; text-anchor: end; fill: #86868b" x="96.061562" y="163.848171" transform="rotate(-0 96.061562 163.848171)">客单价 ARPU ±25%</text>
+     </g>
+    </g>
+    <g id="ytick_5">
+     <g id="line2d_15"/>
+     <g id="text_11">
+      <text style="font-size: 10px; font-family: 'Segoe UI', 'Microsoft YaHei', 'Arial', sans-serif; text-anchor: end; fill: #86868b" x="96.061562" y="129.410903" transform="rotate(-0 96.061562 129.410903)">访客→注册转化 ±30%</text>
+     </g>
+    </g>
+    <g id="ytick_6">
+     <g id="line2d_16"/>
+     <g id="text_12">
+      <text style="font-size: 10px; font-family: 'Segoe UI', 'Microsoft YaHei', 'Arial', sans-serif; text-anchor: end; fill: #86868b" x="96.061562" y="94.973634" transform="rotate(-0 96.061562 94.973634)">注册→付费转化 ±30%</text>
+     </g>
+    </g>
+    <g id="ytick_7">
+     <g id="line2d_17"/>
+     <g id="text_13">
+      <text style="font-size: 10px; font-family: 'Segoe UI', 'Microsoft YaHei', 'Arial', sans-serif; text-anchor: end; fill: #86868b" x="96.061562" y="60.536366" transform="rotate(-0 96.061562 60.536366)">SEO 流量上限 ±40%</text>
+     </g>
+    </g>
+   </g>
+   <g id="patch_3">
+    <path d="M 356.83063 272.928663 
+L 402.614846 272.928663 
+L 402.614846 253.988165 
+L 356.83063 253.988165 
+z
+" clip-path="url(#p06bd67eb0d)" style="fill: #0071e3; opacity: 0.75"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 328.282624 238.491394 
+L 437.717163 238.491394 
+L 437.717163 219.550897 
+L 328.282624 219.550897 
+z
+" clip-path="url(#p06bd67eb0d)" style="fill: #0071e3; opacity: 0.75"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 291.87361 204.054126 
+L 454.604288 204.054126 
+L 454.604288 185.113628 
+L 291.87361 185.113628 
+z
+" clip-path="url(#p06bd67eb0d)" style="fill: #0071e3; opacity: 0.75"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 241.787487 169.616857 
+L 516.226547 169.616857 
+L 516.226547 150.67636 
+L 241.787487 150.67636 
+z
+" clip-path="url(#p06bd67eb0d)" style="fill: #0071e3; opacity: 0.75"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 204.914008 135.179589 
+L 561.852212 135.179589 
+L 561.852212 116.239091 
+L 204.914008 116.239091 
+z
+" clip-path="url(#p06bd67eb0d)" style="fill: #0071e3; opacity: 0.75"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 204.914008 100.74232 
+L 561.852212 100.74232 
+L 561.852212 81.801823 
+L 204.914008 81.801823 
+z
+" clip-path="url(#p06bd67eb0d)" style="fill: #0071e3; opacity: 0.75"/>
+   </g>
+   <g id="patch_9">
+    <path d="M 167.305915 66.305052 
+L 590.708119 66.305052 
+L 590.708119 47.364554 
+L 167.305915 47.364554 
+z
+" clip-path="url(#p06bd67eb0d)" style="fill: #0071e3; opacity: 0.75"/>
+   </g>
+   <g id="line2d_18">
+    <path d="M 379.007017 284.206868 
+L 379.007017 36.086349 
+" clip-path="url(#p06bd67eb0d)" style="fill: none; stroke-dasharray: 5.18,2.24; stroke-dashoffset: 0; stroke: #1d1d1f; stroke-width: 1.4"/>
+   </g>
+   <g id="patch_10">
+    <path d="M 99.561562 284.206868 
+L 658.452472 284.206868 
+" style="fill: none; stroke: #e8e8ed; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="text_14">
+    <text style="font-size: 9px; font-family: 'Segoe UI', 'Microsoft YaHei', 'Arial', sans-serif; text-anchor: end; fill: #86868b" x="350.479597" y="265.75482" transform="rotate(-0 350.479597 265.75482)">$9k</text>
+   </g>
+   <g id="text_15">
+    <text style="font-size: 9px; font-family: 'Segoe UI', 'Microsoft YaHei', 'Arial', sans-serif; text-anchor: start; fill: #86868b" x="408.965879" y="265.75482" transform="rotate(-0 408.965879 265.75482)">$10k</text>
+   </g>
+   <g id="text_16">
+    <text style="font-size: 9px; font-family: 'Segoe UI', 'Microsoft YaHei', 'Arial', sans-serif; text-anchor: end; fill: #86868b" x="321.931591" y="231.317552" transform="rotate(-0 321.931591 231.317552)">$9k</text>
+   </g>
+   <g id="text_17">
+    <text style="font-size: 9px; font-family: 'Segoe UI', 'Microsoft YaHei', 'Arial', sans-serif; text-anchor: start; fill: #86868b" x="444.068196" y="231.317552" transform="rotate(-0 444.068196 231.317552)">$11k</text>
+   </g>
+   <g id="text_18">
+    <text style="font-size: 9px; font-family: 'Segoe UI', 'Microsoft YaHei', 'Arial', sans-serif; text-anchor: end; fill: #86868b" x="285.522577" y="196.880283" transform="rotate(-0 285.522577 196.880283)">$8k</text>
+   </g>
+   <g id="text_19">
+    <text style="font-size: 9px; font-family: 'Segoe UI', 'Microsoft YaHei', 'Arial', sans-serif; text-anchor: start; fill: #86868b" x="460.955321" y="196.880283" transform="rotate(-0 460.955321 196.880283)">$11k</text>
+   </g>
+   <g id="text_20">
+    <text style="font-size: 9px; font-family: 'Segoe UI', 'Microsoft YaHei', 'Arial', sans-serif; text-anchor: end; fill: #86868b" x="235.436454" y="162.443015" transform="rotate(-0 235.436454 162.443015)">$7k</text>
+   </g>
+   <g id="text_21">
+    <text style="font-size: 9px; font-family: 'Segoe UI', 'Microsoft YaHei', 'Arial', sans-serif; text-anchor: start; fill: #86868b" x="522.57758" y="162.443015" transform="rotate(-0 522.57758 162.443015)">$12k</text>
+   </g>
+   <g id="text_22">
+    <text style="font-size: 9px; font-family: 'Segoe UI', 'Microsoft YaHei', 'Arial', sans-serif; text-anchor: end; fill: #86868b" x="198.562975" y="128.005746" transform="rotate(-0 198.562975 128.005746)">$7k</text>
+   </g>
+   <g id="text_23">
+    <text style="font-size: 9px; font-family: 'Segoe UI', 'Microsoft YaHei', 'Arial', sans-serif; text-anchor: start; fill: #86868b" x="568.203245" y="128.005746" transform="rotate(-0 568.203245 128.005746)">$13k</text>
+   </g>
+   <g id="text_24">
+    <text style="font-size: 9px; font-family: 'Segoe UI', 'Microsoft YaHei', 'Arial', sans-serif; text-anchor: end; fill: #86868b" x="198.562975" y="93.568478" transform="rotate(-0 198.562975 93.568478)">$7k</text>
+   </g>
+   <g id="text_25">
+    <text style="font-size: 9px; font-family: 'Segoe UI', 'Microsoft YaHei', 'Arial', sans-serif; text-anchor: start; fill: #86868b" x="568.203245" y="93.568478" transform="rotate(-0 568.203245 93.568478)">$13k</text>
+   </g>
+   <g id="text_26">
+    <text style="font-size: 9px; font-family: 'Segoe UI', 'Microsoft YaHei', 'Arial', sans-serif; text-anchor: end; fill: #86868b" x="160.954882" y="59.131209" transform="rotate(-0 160.954882 59.131209)">$6k</text>
+   </g>
+   <g id="text_27">
+    <text style="font-size: 9px; font-family: 'Segoe UI', 'Microsoft YaHei', 'Arial', sans-serif; text-anchor: start; fill: #86868b" x="597.059152" y="59.131209" transform="rotate(-0 597.059152 59.131209)">$13k</text>
+   </g>
+   <g id="text_28">
+    <text style="font-weight: 700; font-size: 10px; font-family: 'Segoe UI', 'Microsoft YaHei', 'Arial', sans-serif; text-anchor: start; fill: #1d1d1f" x="379.007017" y="27.563125" transform="rotate(-0 379.007017 27.563125)"> 基准 $10k</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p06bd67eb0d">
+   <rect x="99.561562" y="36.086349" width="558.890909" height="248.120519"/>
+  </clipPath>
+ </defs>
+</svg>

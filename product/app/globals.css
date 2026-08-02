@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ink: #1d1d1f;
+  --sub: #6e6e73;
+  --faint: #f5f5f7;
+  --line: #d2d2d7;
+  --accent: #0071e3;
+  --bg0: #fbfbfd;
+  --bg1: #eef3f9;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: var(--ink);
+  background:
+    radial-gradient(1200px 600px at 10% -10%, #dce9f8 0%, transparent 55%),
+    radial-gradient(900px 500px at 90% 0%, #e8f0e9 0%, transparent 50%),
+    linear-gradient(180deg, var(--bg0), #ffffff 40%, var(--bg1));
+  min-height: 100vh;
+}
+
+::selection {
+  background: #b3d7ff;
+}
+
+.prose-doc h2 {
+  @apply text-2xl font-semibold tracking-tight mt-10 mb-3;
+}
+.prose-doc h3 {
+  @apply text-lg font-semibold mt-6 mb-2;
+}
+.prose-doc p,
+.prose-doc li {
+  @apply text-[15px] leading-7 text-sub;
+}
+.prose-doc code {
+  @apply font-mono text-[13px] bg-faint px-1.5 py-0.5 rounded;
+}
+.prose-doc pre {
+  @apply bg-ink text-white rounded-xl p-4 overflow-x-auto text-[13px] leading-6 my-4;
+}
+.prose-doc pre code {
+  @apply bg-transparent p-0 text-inherit;
+}

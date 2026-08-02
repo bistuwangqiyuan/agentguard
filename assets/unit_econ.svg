@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="677.931648pt" height="260.025955pt" viewBox="0 0 677.931648 260.025955" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-06-12T23:27:37.566501</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.10.9, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 260.025955 
+L 677.931648 260.025955 
+L 677.931648 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 48.144375 226.66283 
+L 657.771648 226.66283 
+L 657.771648 31.056102 
+L 48.144375 31.056102 
+z
+" style="fill: #ffffff"/>
+   </g>
+   <g id="matplotlib.axis_1">
+    <g id="xtick_1">
+     <g id="line2d_1">
+      <path d="M 106.424821 226.66283 
+L 106.424821 31.056102 
+" clip-path="url(#p8f0ada476d)" style="fill: none; stroke: #e8e8ed; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_2"/>
+     <g id="text_1">
+      <text style="font-size: 10px; font-family: 'Segoe UI', 'Microsoft YaHei', 'Arial', sans-serif; text-anchor: middle; fill: #86868b" x="106.424821" y="237.565955" transform="rotate(-0 106.424821 237.565955)">ARPU</text>
+     </g>
+    </g>
+    <g id="xtick_2">
+     <g id="line2d_3">
+      <path d="M 205.038097 226.66283 
+L 205.038097 31.056102 
+" clip-path="url(#p8f0ada476d)" style="fill: none; stroke: #e8e8ed; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_4"/>
+     <g id="text_2">
+      <text style="font-size: 10px; font-family: 'Segoe UI', 'Microsoft YaHei', 'Arial', sans-serif; text-anchor: middle; fill: #86868b" x="205.038097" y="237.565955" transform="rotate(-0 205.038097 237.565955)">MoR渠道费</text>
+     </g>
+    </g>
+    <g id="xtick_3">
+     <g id="line2d_5">
+      <path d="M 303.651373 226.66283 
+L 303.651373 31.056102 
+" clip-path="url(#p8f0ada476d)" style="fill: none; stroke: #e8e8ed; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_6"/>
+     <g id="text_3">
+      <text style="font-size: 10px; font-family: 'Segoe UI', 'Microsoft YaHei', 'Arial', sans-serif; text-anchor: middle; fill: #86868b" x="303.651373" y="237.565955" transform="rotate(-0 303.651373 237.565955)">AI推理</text>
+     </g>
+    </g>
+    <g id="xtick_4">
+     <g id="line2d_7">
+      <path d="M 402.264649 226.66283 
+L 402.264649 31.056102 
+" clip-path="url(#p8f0ada476d)" style="fill: none; stroke: #e8e8ed; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_8"/>
+     <g id="text_4">
+      <text style="font-size: 10px; font-family: 'Segoe UI', 'Microsoft YaHei', 'Arial', sans-serif; text-anchor: middle; fill: #86868b" x="402.264649" y="237.565955" transform="rotate(-0 402.264649 237.565955)">免费层负担</text>
+     </g>
+    </g>
+    <g id="xtick_5">
+     <g id="line2d_9">
+      <path d="M 500.877925 226.66283 
+L 500.877925 31.056102 
+" clip-path="url(#p8f0ada476d)" style="fill: none; stroke: #e8e8ed; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_10"/>
+     <g id="text_5">
+      <text style="font-size: 10px; font-family: 'Segoe UI', 'Microsoft YaHei', 'Arial', sans-serif; text-anchor: middle; fill: #86868b" x="500.877925" y="237.565955" transform="rotate(-0 500.877925 237.565955)">基础设施</text>
+     </g>
+    </g>
+    <g id="xtick_6">
+     <g id="line2d_11">
+      <path d="M 599.491202 226.66283 
+L 599.491202 31.056102 
+" clip-path="url(#p8f0ada476d)" style="fill: none; stroke: #e8e8ed; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_12"/>
+     <g id="text_6">
+      <text style="font-size: 10px; font-family: 'Segoe UI', 'Microsoft YaHei', 'Arial', sans-serif; text-anchor: middle; fill: #86868b" x="599.491202" y="237.565955" transform="rotate(-0 599.491202 237.565955)">毛利</text>
+     </g>
+    </g>
+   </g>
+   <g id="matplotlib.axis_2">
+    <g id="ytick_1">
+     <g id="line2d_13">
+      <path d="M 48.144375 226.66283 
+L 657.771648 226.66283 
+" clip-path="url(#p8f0ada476d)" style="fill: none; stroke: #e8e8ed; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_14"/>
+     <g id="text_7">
+      <text style="font-size: 10px; font-family: 'Segoe UI', 'Microsoft YaHei', 'Arial', sans-serif; text-anchor: end; fill: #86868b" x="44.644375" y="230.364392" transform="rotate(-0 44.644375 230.364392)">0</text>
+     </g>
+    </g>
+    <g id="ytick_2">
+     <g id="line2d_15">
+      <path d="M 48.144375 191.733057 
+L 657.771648 191.733057 
+" clip-path="url(#p8f0ada476d)" style="fill: none; stroke: #e8e8ed; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_16"/>
+     <g id="text_8">
+      <text style="font-size: 10px; font-family: 'Segoe UI', 'Microsoft YaHei', 'Arial', sans-serif; text-anchor: end; fill: #86868b" x="44.644375" y="195.434619" transform="rotate(-0 44.644375 195.434619)">5</text>
+     </g>
+    </g>
+    <g id="ytick_3">
+     <g id="line2d_17">
+      <path d="M 48.144375 156.803284 
+L 657.771648 156.803284 
+" clip-path="url(#p8f0ada476d)" style="fill: none; stroke: #e8e8ed; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_18"/>
+     <g id="text_9">
+      <text style="font-size: 10px; font-family: 'Segoe UI', 'Microsoft YaHei', 'Arial', sans-serif; text-anchor: end; fill: #86868b" x="44.644375" y="160.504847" transform="rotate(-0 44.644375 160.504847)">10</text>
+     </g>
+    </g>
+    <g id="ytick_4">
+     <g id="line2d_19">
+      <path d="M 48.144375 121.873511 
+L 657.771648 121.873511 
+" clip-path="url(#p8f0ada476d)" style="fill: none; stroke: #e8e8ed; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_20"/>
+     <g id="text_10">
+      <text style="font-size: 10px; font-family: 'Segoe UI', 'Microsoft YaHei', 'Arial', sans-serif; text-anchor: end; fill: #86868b" x="44.644375" y="125.575074" transform="rotate(-0 44.644375 125.575074)">15</text>
+     </g>
+    </g>
+    <g id="ytick_5">
+     <g id="line2d_21">
+      <path d="M 48.144375 86.943739 
+L 657.771648 86.943739 
+" clip-path="url(#p8f0ada476d)" style="fill: none; stroke: #e8e8ed; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_22"/>
+     <g id="text_11">
+      <text style="font-size: 10px; font-family: 'Segoe UI', 'Microsoft YaHei', 'Arial', sans-serif; text-anchor: end; fill: #86868b" x="44.644375" y="90.645301" transform="rotate(-0 44.644375 90.645301)">20</text>
+     </g>
+    </g>
+    <g id="ytick_6">
+     <g id="line2d_23">
+      <path d="M 48.144375 52.013966 
+L 657.771648 52.013966 
+" clip-path="url(#p8f0ada476d)" style="fill: none; stroke: #e8e8ed; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_24"/>
+     <g id="text_12">
+      <text style="font-size: 10px; font-family: 'Segoe UI', 'Microsoft YaHei', 'Arial', sans-serif; text-anchor: end; fill: #86868b" x="44.644375" y="55.715528" transform="rotate(-0 44.644375 55.715528)">25</text>
+     </g>
+    </g>
+    <g id="text_13">
+     <text style="font-size: 10px; font-family: 'Segoe UI', 'Microsoft YaHei', 'Arial', sans-serif; text-anchor: middle; fill: #86868b" x="27.563125" y="128.859466" transform="rotate(-90 27.563125 128.859466)">USD / 付费用户 / 月</text>
+    </g>
+   </g>
+   <g id="patch_3">
+    <path d="M 75.854706 226.66283 
+L 136.994937 226.66283 
+L 136.994937 31.056102 
+L 75.854706 31.056102 
+z
+" clip-path="url(#p8f0ada476d)" style="fill: #0071e3"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 174.467982 31.056102 
+L 235.608213 31.056102 
+L 235.608213 44.329416 
+L 174.467982 44.329416 
+z
+" clip-path="url(#p8f0ada476d)" style="fill: #ff3b30; opacity: 0.75"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 273.081258 44.329416 
+L 334.221489 44.329416 
+L 334.221489 56.904134 
+L 273.081258 56.904134 
+z
+" clip-path="url(#p8f0ada476d)" style="fill: #ff3b30; opacity: 0.75"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 371.694534 56.904134 
+L 432.834765 56.904134 
+L 432.834765 60.746409 
+L 371.694534 60.746409 
+z
+" clip-path="url(#p8f0ada476d)" style="fill: #ff3b30; opacity: 0.75"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 470.30781 60.746409 
+L 531.448041 60.746409 
+L 531.448041 63.890089 
+L 470.30781 63.890089 
+z
+" clip-path="url(#p8f0ada476d)" style="fill: #ff3b30; opacity: 0.75"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 568.921086 226.66283 
+L 630.061317 226.66283 
+L 630.061317 63.890089 
+L 568.921086 63.890089 
+z
+" clip-path="url(#p8f0ada476d)" style="fill: #34c759"/>
+   </g>
+   <g id="patch_9">
+    <path d="M 48.144375 226.66283 
+L 657.771648 226.66283 
+" style="fill: none; stroke: #e8e8ed; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="text_14">
+    <text style="font-weight: 700; font-size: 10px; font-family: 'Segoe UI', 'Microsoft YaHei', 'Arial', sans-serif; text-anchor: middle; fill: #1d1d1f" x="106.424821" y="27.563125" transform="rotate(-0 106.424821 27.563125)">$28.00</text>
+   </g>
+   <g id="text_15">
+    <text style="font-size: 10px; font-family: 'Segoe UI', 'Microsoft YaHei', 'Arial', sans-serif; text-anchor: middle; fill: #ff3b30" x="205.038097" y="27.563125" transform="rotate(-0 205.038097 27.563125)">−$1.90</text>
+   </g>
+   <g id="text_16">
+    <text style="font-size: 10px; font-family: 'Segoe UI', 'Microsoft YaHei', 'Arial', sans-serif; text-anchor: middle; fill: #ff3b30" x="303.651373" y="40.836439" transform="rotate(-0 303.651373 40.836439)">−$1.80</text>
+   </g>
+   <g id="text_17">
+    <text style="font-size: 10px; font-family: 'Segoe UI', 'Microsoft YaHei', 'Arial', sans-serif; text-anchor: middle; fill: #ff3b30" x="402.264649" y="53.411157" transform="rotate(-0 402.264649 53.411157)">−$0.55</text>
+   </g>
+   <g id="text_18">
+    <text style="font-size: 10px; font-family: 'Segoe UI', 'Microsoft YaHei', 'Arial', sans-serif; text-anchor: middle; fill: #ff3b30" x="500.877925" y="57.253432" transform="rotate(-0 500.877925 57.253432)">−$0.45</text>
+   </g>
+   <g id="text_19">
+    <text style="font-weight: 700; font-size: 10px; font-family: 'Segoe UI', 'Microsoft YaHei', 'Arial', sans-serif; text-anchor: middle; fill: #34c759" x="599.491202" y="60.397111" transform="rotate(-0 599.491202 60.397111)">$23.30</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p8f0ada476d">
+   <rect x="48.144375" y="31.056102" width="609.627273" height="195.606727"/>
+  </clipPath>
+ </defs>
+</svg>

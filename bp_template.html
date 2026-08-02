@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Breakthrough · 一人无人公司商业计划书 · 2026</title>
+<style>
+  :root {
+    --ink: #1d1d1f;
+    --sub: #86868b;
+    --hairline: #d2d2d7;
+    --faint: #f5f5f7;
+    --blue: #0071e3;
+    --green: #34c759;
+    --red: #ff3b30;
+    --orange: #ff9500;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body {
+    font-family: -apple-system, "SF Pro Display", "SF Pro Text", "Helvetica Neue",
+                 "PingFang SC", "Microsoft YaHei", "Segoe UI", sans-serif;
+    color: var(--ink);
+    background: #fff;
+    font-size: 9.8pt;
+    line-height: 1.6;
+    font-feature-settings: "tnum";
+  }
+  .doc { max-width: 188mm; margin: 0 auto; padding: 0 6mm; }
+
+  section.sheet { padding: 14mm 0 10mm; }
+  .eyebrow {
+    font-size: 8.5pt; font-weight: 600; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--blue); margin-bottom: 3mm;
+  }
+  h1 { font-size: 30pt; font-weight: 700; letter-spacing: -0.022em; line-height: 1.12; }
+  h2 { font-size: 17.5pt; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 4mm; }
+  h3 { font-size: 11.5pt; font-weight: 700; letter-spacing: -0.01em; margin: 5.5mm 0 2mm; }
+  p  { margin-bottom: 2.6mm; }
+  .lede { font-size: 11.5pt; line-height: 1.55; color: #424245; font-weight: 400; margin-bottom: 4mm; }
+  .sub { color: var(--sub); }
+  .small { font-size: 8.5pt; line-height: 1.6; color: var(--sub); }
+  strong { font-weight: 650; }
+  em { font-style: normal; color: var(--blue); font-weight: 600; }
+
+  .ref { font-size: 7.5pt; color: var(--blue); vertical-align: super; line-height: 0; white-space: nowrap; }
+
+  /* ---------- cover ---------- */
+  .cover { min-height: 250mm; display: flex; flex-direction: column; justify-content: space-between; padding: 24mm 0 16mm; }
+  .cover h1 { font-size: 42pt; margin: 4mm 0 6mm; }
+  .cover .titlecn { font-size: 21pt; font-weight: 600; letter-spacing: -0.015em; color: #424245; }
+  .cover-meta { display: flex; gap: 10mm; border-top: 1px solid var(--hairline); padding-top: 5mm; }
+  .cover-meta div { font-size: 9pt; color: var(--sub); }
+  .cover-meta b { display: block; color: var(--ink); font-size: 10.5pt; font-weight: 600; margin-bottom: 1mm; }
+  .cover-badges { display: flex; gap: 2.5mm; margin-top: 8mm; flex-wrap: wrap; }
+
+  .tag {
+    display: inline-block; font-size: 8pt; font-weight: 600; padding: .8mm 3mm;
+    border-radius: 99px; background: var(--faint); color: var(--ink); white-space: nowrap;
+  }
+  .tag-blue  { background: #e8f1fd; color: var(--blue); }
+  .tag-green { background: #e4f8ea; color: #1d8a3e; }
+  .tag-red   { background: #fdeae8; color: #c92a1f; }
+  .tag-gray  { background: var(--faint); color: var(--sub); }
+
+  /* ---------- KPI cards ---------- */
+  .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3mm; margin: 5mm 0; }
+  .kpis.three { grid-template-columns: repeat(3, 1fr); }
+  .kpi { background: var(--faint); border-radius: 4.5mm; padding: 4.5mm 4mm 4mm; }
+  .kpi .v { font-size: 15pt; font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; }
+  .kpi .v small { font-size: 9pt; font-weight: 600; color: var(--sub); }
+  .kpi .k { font-size: 8.5pt; color: var(--sub); margin-top: 1.2mm; line-height: 1.45; }
+  .kpi.dark { background: var(--ink); color: #fff; }
+  .kpi.dark .k { color: #a1a1a6; }
+  .kpi.blue { background: #e8f1fd; } .kpi.blue .v { color: var(--blue); }
+  .kpi.green { background: #e4f8ea; } .kpi.green .v { color: #1d8a3e; }
+
+  /* ---------- tables ---------- */
+  table.tbl { width: 100%; border-collapse: collapse; margin: 3mm 0; font-size: 8.6pt; }
+  .tbl th {
+    text-align: left; font-weight: 600; font-size: 7.8pt; color: var(--sub);
+    border-bottom: 1px solid var(--ink); padding: 1.4mm 2mm; vertical-align: bottom;
+  }
+  .tbl td { border-bottom: 1px solid #e8e8ed; padding: 1.6mm 2mm; vertical-align: top; }
+  .tbl tr.total td { border-top: 1.5px solid var(--ink); border-bottom: none; font-weight: 700; }
+  .tbl .nm { font-weight: 600; }
+  .tbl tr.sel td { background: #f0f7ff; }
+  .tbl tr.sel .nm { color: var(--blue); }
+  .tbl tr.rej td { color: var(--sub); }
+  .tbl td.score { font-weight: 700; font-variant-numeric: tabular-nums; }
+  .tbl th .w { display: block; font-weight: 400; color: #b9b9be; font-size: 7pt; }
+  .scoring td, .scoring th { text-align: center; }
+  .scoring td.nm, .scoring th:first-child { text-align: left; }
+
+  /* ---------- figure ---------- */
+  figure { margin: 3.5mm 0; break-inside: avoid; }
+  figure svg { width: 100%; height: auto; display: block; }
+  figcaption { font-size: 8.5pt; color: var(--sub); margin-top: 1.5mm; line-height: 1.55; }
+  figcaption b { color: var(--ink); font-weight: 650; }
+
+  /* ---------- callout ---------- */
+  .callout { background: var(--faint); border-radius: 4.5mm; padding: 4mm 5mm; margin: 3.5mm 0; break-inside: avoid; }
+  .callout.line { background: #fff; border: 1px solid var(--hairline); }
+  .callout h4 { font-size: 10.5pt; font-weight: 700; margin-bottom: 2mm; }
+  .callout p:last-child { margin-bottom: 0; }
+  .callout.warn { background: #fff8e8; }
+  .callout.bad  { background: #fdeae8; }
+  .callout.good { background: #e4f8ea; }
+
+  ul.tight, ol.tight { padding-left: 5.5mm; margin: 2mm 0 3.5mm; }
+  ul.tight li, ol.tight li { margin-bottom: 1.6mm; }
+
+  /* ---------- two-col ---------- */
+  .cols2 { display: grid; grid-template-columns: 1fr 1fr; gap: 6mm; }
+  .cols3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4mm; }
+
+  /* ---------- ops flow diagram ---------- */
+  .flow { display: grid; grid-template-columns: repeat(6, 1fr); gap: 2mm; margin: 4mm 0 2mm; }
+  .flow .node {
+    background: var(--faint); border-radius: 3.5mm; padding: 3mm 2.6mm;
+    font-size: 8pt; line-height: 1.5; position: relative;
+  }
+  .flow .node b { display: block; font-size: 8.6pt; margin-bottom: 1mm; letter-spacing: -0.01em; }
+  .flow .node .auto { display: inline-block; margin-top: 1.4mm; font-size: 7pt; font-weight: 700; color: #1d8a3e; }
+  .flow .node:not(:last-child)::after {
+    content: "→"; position: absolute; right: -2.4mm; top: 42%;
+    color: var(--sub); font-size: 9pt;
+  }
+  .humanband {
+    margin-top: 3mm; border: 1.2px dashed var(--blue); border-radius: 3.5mm;
+    padding: 3mm 4mm; font-size: 8.6pt; color: var(--blue); background: #f7fafe;
+  }
+  .humanband b { font-weight: 700; }
+
+  /* ---------- wedge cards ---------- */
+  .wedge { border: 1px solid var(--hairline); border-radius: 4.5mm; padding: 4.5mm 5mm; break-inside: avoid; }
+  .wedge h4 { font-size: 10.5pt; font-weight: 700; margin-bottom: 1.6mm; }
+  .wedge p { font-size: 8.8pt; line-height: 1.62; margin-bottom: 1.6mm; }
+
+  /* ---------- milestones ---------- */
+  .mile { display: grid; grid-template-columns: 22mm 1fr; gap: 4mm; padding: 3.4mm 0; border-bottom: 1px solid #e8e8ed; break-inside: avoid; }
+  .mile:last-child { border-bottom: none; }
+  .mile .when { font-weight: 700; font-size: 9.5pt; letter-spacing: -0.01em; }
+  .mile .what { font-size: 9.2pt; }
+  .mile .gate { font-size: 8.4pt; margin-top: 1mm; }
+  .mile .gate b.go { color: #1d8a3e; } .mile .gate b.stop { color: #c92a1f; }
+
+  /* ---------- sources ---------- */
+  ol.sources { padding-left: 0; list-style: none; font-size: 8.2pt; line-height: 1.62; color: #424245; }
+  ol.sources li { margin-bottom: 1.8mm; padding-left: 0; }
+  .src-key { font-weight: 700; color: var(--blue); }
+
+  .pricing { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3mm; margin: 4mm 0; }
+  .price-card { border: 1px solid var(--hairline); border-radius: 4.5mm; padding: 4mm 3.6mm; font-size: 8.4pt; line-height: 1.55; }
+  .price-card.hot { border: 1.6px solid var(--blue); }
+  .price-card .nm { font-weight: 700; font-size: 9.5pt; }
+  .price-card .pr { font-size: 15pt; font-weight: 700; letter-spacing: -0.02em; margin: 1.4mm 0; }
+  .price-card .pr small { font-size: 8pt; color: var(--sub); font-weight: 500; }
+
+  .footer-note { border-top: 1px solid var(--hairline); margin-top: 8mm; padding-top: 3mm; font-size: 8pt; color: var(--sub); display: flex; justify-content: space-between; }
+
+  /* ---------- print ---------- */
+  @page { size: A4; margin: 0; }
+  @media print {
+    .doc { max-width: none; padding: 0; }
+    section.sheet { padding: 13mm 15mm 10mm; page-break-after: always; }
+    section.sheet:last-child { page-break-after: auto; }
+    .cover { min-height: 270mm; }
+    a { color: inherit; text-decoration: none; }
+  }
+  @media screen {
+    body { background: #f0f0f2; }
+    .doc { background: transparent; max-width: 210mm; padding: 8mm 0; }
+    section.sheet {
+      background: #fff; border-radius: 4mm; margin-bottom: 8mm;
+      padding: 16mm 16mm 12mm; box-shadow: 0 1px 4px rgba(0,0,0,.08);
+    }
+  }
+</style>
+</head>
+<body>
+<div class="doc">
+
+<!-- ================= 封面 ================= -->
+<section class="sheet cover">
+  <div>
+    <div class="eyebrow">Business Plan · 2026.06</div>
+    <h1>AI Breakthrough</h1>
+    <div class="titlecn">一人无人公司商业计划书 · 完全重制版</div>
+    <div class="cover-badges">
+      <span class="tag tag-blue">自筹资金 · 零融资</span>
+      <span class="tag tag-blue">全球市场 · 英文产品</span>
+      <span class="tag tag-blue">零人工运营 · AI 代理驱动</span>
+      <span class="tag tag-gray">每周 20 小时 · 启动资金 1–5 万元</span>
+    </div>
+    <p class="lede" style="margin-top:10mm; max-width:150mm;">
+      面向 AI 代理开发者的利基 API 产品。本计划书推翻了原案的全部口径与数字,
+      以四组独立深度调研为依据、以可复算的 Python 模型为骨架重新编制——
+      每一个数字要么可溯源,要么由 <code>model/</code> 目录下的脚本计算产生。
+    </p>
+  </div>
+  <div>
+    <div class="kpis">
+      <div class="kpi dark"><div class="v">{{startup_total|usd}}</div><div class="k">一次性启动成本(个人主体经 MoR 收款,无需注册公司)</div></div>
+      <div class="kpi"><div class="v">{{unit_economics.gross_margin_pct}}%</div><div class="k">单位毛利率(基准情形,扣除渠道费与 AI 推理成本)</div></div>
+      <div class="kpi"><div class="v">{{montecarlo.prob_table.m24.ge_1000|pct0}}</div><div class="k">24 个月内达到 $1,000 MRR 的概率(20,000 次蒙特卡洛模拟)</div></div>
+      <div class="kpi"><div class="v">{{scenarios.base.summary.mrr_m36|usd}}<small> /月</small></div><div class="k">第 36 个月 MRR(基准情形 ≈ 存活产品中位轨迹)</div></div>
+    </div>
+    <div class="cover-meta">
+      <div><b>文档性质</b>正式对外商业计划书</div>
+      <div><b>编制日期</b>2026 年 6 月 12 日</div>
+      <div><b>数据口径</b>USD,人民币按 7.1 折算</div>
+      <div><b>复算方式</b>python model/run_all.py</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 01 执行摘要 ================= -->
+<section class="sheet">
+  <div class="eyebrow">01 · Executive Summary</div>
+  <h2>执行摘要</h2>
+  <p class="lede">用最小的钱、最诚实的概率,在 2026 年最不饱和的开发者利基中,建一家完全由 AI 代理运营的一人公司。</p>
+
+  <p><strong>选定机会:</strong>面向 AI 代理(agent)开发者的单一职能 API 产品。AI 代理市场 2026 年规模 $109–121 亿,2030 年将达 $470–532 亿(CAGR 44–49.6%)<span class="ref">[market_agents]</span>;代理消费的开发者基础设施 API 被四组调研一致判定为 2026 年最不饱和的开发者利基<span class="ref">[arch_api]</span>。该原型在我们以"零人工可运营性"为最高权重重建的评分矩阵中得 <em>8.20 分</em>,居七个候选之首;原案"AI 模型训练与部署平台"得 3.18 分,垫底淘汰(详见第 03、04 节)。</p>
+
+  <p><strong>商业模式:</strong>自助式订阅 API($29 / $79 / $199 三档 + 受限免费层),经 Paddle / Lemon Squeezy 以个人主体收款,由其作为法律卖方全权处理美国销售税与欧盟 VAT<span class="ref">[cost_mor]</span>。获客全部依赖可自动化渠道:免费工具 SEO 漏斗、开发者文档与市场目录——这是经 326 个项目实证最有效的首批客户来源组合<span class="ref">[channel_first]</span>。</p>
+
+  <p><strong>为什么"无人公司"在这个品类成立:</strong>开发者客户读文档自助解决问题,实证支持负担为所有原型最低(单人 API 产品 400 个付费客户每周仅 1–3 个工单)<span class="ref">[arch_api]</span>;再叠加基于产品文档的 AI 客服(知识库本身可消解 40–60%)<span class="ref">[arch_support]</span>,模型测算基准情形人工运营峰值仅 <em>{{scenarios.base.summary.max_human_hours_week|num1}} 小时/周</em>,远低于 20 小时预算——剩余时间全部投入开发与内容,这正是单人公司唯一稀缺的资源。</p>
+
+  <div class="kpis">
+    <div class="kpi blue"><div class="v">第 {{scenarios.base.summary.breakeven_month}} 个月</div><div class="k">经营性盈亏平衡(固定燃烧仅 ~$55/月,亏钱不是本模式的风险,浪费时间才是)</div></div>
+    <div class="kpi"><div class="v">{{scenarios.base.summary.mrr_m24|usd}}</div><div class="k">第 24 个月 MRR(基准情形,锚定存活产品中位 $4.2k)<span class="ref">[dist_freemius]</span></div></div>
+    <div class="kpi"><div class="v">{{montecarlo.cum_profit_36m.p50|usd}}</div><div class="k">36 个月累计利润中位数(蒙特卡洛);期望值 {{montecarlo.ev_cum_profit_36m|usd}}</div></div>
+    <div class="kpi green"><div class="v">{{montecarlo.p_cash_negative|pct2}}</div><div class="k">现金耗尽概率(20,000 条模拟路径中仅 {{montecarlo.n_cash_negative|num}} 条现金跌破零)</div></div>
+  </div>
+
+  <p><strong>投资视角(第 10 节):</strong>把创始人时间按市场价 ${{invest.assumptions.opp_rate|num}}/小时计为成本后,带硬性放弃纪律的本计划口径为:胜率 <em>{{invest.gated.win_rate|pct}}</em>、盈亏比 <em>{{invest.gated.pl_ratio|num1}}:1</em>、风险调整期望年化 <em>{{invest.gated.ann_ev|signpct0}}</em>、Kelly 最优投入比例 <em>f*={{invest.gated.kelly_f|num2}}</em>(实务建议按半凯利执行);同一项目若没有放弃纪律、36 个月全程投入且不计残值,期望年化为 {{invest.econ.ann_ev|signpct0}}——<strong>放弃纪律本身就是回报的主要来源之一</strong>。</p>
+
+  <div class="callout warn">
+    <h4>必须先说的实话</h4>
+    <p>以全部尝试为分母,本模型校准后的最可能单次结果是<strong>副业级收入</strong>:第 24 个月 MRR 中位数仅 {{montecarlo.calibration.median_m24|usd}},约 {{montecarlo.calibration.share_below_1k_m24|pct0}} 的尝试停留在 $1,000 MRR 以下——这与真实世界微型 SaaS 的横截面分布一致<span class="ref">[dist_freemius]</span><span class="ref">[dist_indielaunches]</span>。本计划的应对不是假装概率更高,而是:把单次尝试成本压到 {{startup_total|usd}} 量级、现金耗尽概率压到 {{montecarlo.p_cash_negative|pct2}},用<strong>组合式连续尝试 + 明确的放弃标准</strong>(第 14 节)把一次性的赌博变成可重复的正期望过程。
+    </p>
+  </div>
+</section>
+
+<!-- ================= 02 立场修正 ================= -->
+<section class="sheet">
+  <div class="eyebrow">02 · Position Correction</div>
+  <h2>立场修正声明:为何推翻原案</h2>
+  <p class="lede">坚持真理、修正错误。原案按"种子轮 VC + 数十人团队"口径编制,与一人无人公司的前提根本矛盾;经逐项核查,其关键数字要么口径错误,要么与实证相悖。</p>
+
+  <table class="tbl">
+    <thead><tr><th style="width:34%">原案表述</th><th style="width:30%">核查结论</th><th>本计划修正</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="nm">选定"AI 模型训练与部署 SaaS 平台",加权 8.49 分</td>
+        <td>对一人公司不可行:GPU 资本开支、企业销售、SLA 与安全审计均需团队;直面 Hugging Face / Replicate / Modal;无任何一人公司在该品类存活的实例</td>
+        <td>按"零人工可运营性"等七维重建矩阵,该方向得 3.18 分垫底淘汰;改选 8.20 分的代理开发者 API(第 03 节)</td>
+      </tr>
+      <tr>
+        <td class="nm">Y1 营收 1,200 万元、EBITDA −800 万元;Y5 营收 2.8 亿元</td>
+        <td>隐含数十人团队烧钱模型,与 1–5 万元自筹预算相差三个数量级;无资金来源支持该亏损曲线</td>
+        <td>以真实独立 SaaS 分布校准的三情景模型:基准情形 Y1 营收 {{scenarios.base.summary.yearly.0.revenue|usd}}、Y5 营收 {{scenarios.base.summary.yearly.4.revenue|usd}},第 {{scenarios.base.summary.breakeven_month}} 个月即经营性盈亏平衡(第 08 节)</td>
+      </tr>
+      <tr>
+        <td class="nm">"胜率 8–12%(现金成功退出)、年化 18%、盈亏比 6:1、MOIC 1.4x"</td>
+        <td>VC 现金退出口径对自筹一人公司无意义;且单一数字掩盖了结果的重尾分布</td>
+        <td>替换为分层概率(第 09 节),并在第 10 节以更严苛口径(时间计为成本)重算胜率 {{invest.gated.win_rate|pct}}、盈亏比 {{invest.gated.pl_ratio|num1}}:1、风险调整期望年化 {{invest.gated.ann_ev|signpct0}} 与凯利仓位 f*={{invest.gated.kelly_f|num2}}</td>
+      </tr>
+      <tr>
+        <td class="nm">TAM:"全球 AI 相关 SaaS 市场 250 亿美元,中国占 15–20%",来源笼统标注 Gartner/IDC/艾瑞</td>
+        <td>口径模糊不可溯源;且本案已确认面向全球市场,中国占比无关</td>
+        <td>TAM 采用四家机构共识区间(AI 代理市场 2026 年 $109–121 亿)<span class="ref">[market_agents]</span>,SAM/SOM 改用自下而上实证口径(第 06 节)</td>
+      </tr>
+      <tr>
+        <td class="nm">"搜索量 1,500,137(4h 热词)"作为机会依据</td>
+        <td>热词热度 ≠ 付费需求;2026 年供给洪水(iOS 提交量同比 +84%,Lovable 日增 20 万项目)使"追热点"成为最拥挤的路径<span class="ref">[arch_supply]</span></td>
+        <td>机会判定改为以支持负担、分发可自动化、留存等结构性维度评分,并以已验证的同类单人产品轨迹为锚<span class="ref">[arch_api]</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <h4>方法论承诺</h4>
+    <p>本计划书所有定量结论满足以下之一:① 标注来源编号(附录 16,含原始 URL 与可信度评级);② 由 <code>model/</code> 下的 Python 脚本计算产生,任何读者运行 <code>python model/run_all.py</code> 可在 3 秒内完整复算。调研中发现的不利证据(如被广泛引用的"$4.2k 中位数"溯源链薄弱、明星案例 SiteGPT 实际收入仅为传言的 1/5)一律如实呈现<span class="ref">[arch_sitegpt]</span>,并已计入模型保守侧。</p>
+  </div>
+</section>
+
+<!-- ================= 03 机会评分矩阵 ================= -->
+<section class="sheet">
+  <div class="eyebrow">03 · Opportunity Matrix</div>
+  <h2>机会评分矩阵(按一人无人公司约束重建)</h2>
+  <p class="lede">权重由约束决定:零人工可运营性(0.22)与分发可自动化(0.20)权重最高,因为它们分别是"无人公司"与"无受众冷启动"的生死项。</p>
+
+  {{gen:scoring_table}}
+  <p class="small">评分 1–10,每格打分依据见 <code>model/scoring.py</code>(每个分数附证据引注);加权分 = Σ(维度分 × 权重)。"竞争空间""合规安全"为反向维度,分高代表更不饱和、更安全。</p>
+
+  <h3>关键评分依据(摘录)</h3>
+  <ul class="tight">
+    <li><strong>代理开发者 API(8.20,选定)</strong>——支持负担全原型最低:ScreenshotOne 单人运营 400+ 付费客户每周仅 1–3 个工单;Bannerbear 单人 6 年至 $1M ARR;ScrapingBee 2.5 年 $1M ARR 后八位数全现金退出,全部零广告、纯 SEO/内容增长<span class="ref">[arch_api]</span>。开发者/基础设施工具月流失率 1.8–3%,为全行业最低<span class="ref">[churn_vertical]</span>。代价是慢:到 $10k MRR 普遍需要 12–36 个月,本模型如实采用。</li>
+    <li><strong>浏览器/市场插件(7.28)</strong>——市场自然搜索是唯一零受众第一天就有效的渠道,但天花板低(典型 $650–6.8k/月),作为后续组合选项保留。</li>
+    <li><strong>自助 AI 生成工具(5.49)</strong>——大赢家全部出自已关闭的 2023 窗口,且依赖超出全部预算的分发资产(Levels 35–60 万粉丝、$10k–35k 精确匹配域名)<span class="ref">[arch_unfair]</span>;更致命的是 Paddle 明确禁止 AI 图像生成/换脸/语音克隆品类,MoR 渠道存在被拒风险<span class="ref">[comp_paddle_ban]</span>。</li>
+    <li><strong>SMB AI 客服机器人(4.96)</strong>——品类反讽:卖支持自动化却需要大量人工支持;标杆 SiteGPT 首月流失 50%、2024 年濒临折价出售、实际 MRR 仅 ~$20k 且为 2 人团队<span class="ref">[arch_sitegpt]</span>。</li>
+    <li><strong>程序化 SEO 内容站(5.42)</strong>——2026 年 3 月 Google 核心更新对模板页站点造成 50–93% 流量清零且无申诉通道<span class="ref">[arch_pseo]</span>;但"免费工具集群"形态作为分发层仍然有效,已纳入本案获客架构(第 05 节)。</li>
+  </ul>
+</section>
+
+<!-- ================= 04 选定方向 ================= -->
+<section class="sheet">
+  <div class="eyebrow">04 · The Opportunity</div>
+  <h2>选定方向:面向 AI 代理开发者的利基 API</h2>
+  <p class="lede">把"卖铲子"卖给 2026 年增长最快的买家:构建 AI 代理的开发者。代理在生产环境运行时需要大量单一职能的基础设施调用——解析、校验、脱敏、转换——这些调用嵌入客户代码后形成真实的切换成本。</p>
+
+  <h3>三个候选楔子(30 天验证冲刺后择一)</h3>
+  <div class="cols3">
+    <div class="wedge">
+      <h4>W1 · 文档结构化 API</h4>
+      <p>发票/收据/表单 → 严格 Schema 的 JSON,面向代理自动化工作流。按解析页数计费,准确率与延迟可量化对比。</p>
+      <p class="small">需求已验证但竞争中等;差异化:代理原生(函数调用格式输出、错误可重试语义)。</p>
+    </div>
+    <div class="wedge">
+      <h4>W2 · 代理输出护栏 API</h4>
+      <p>一次调用完成:输出 Schema 校验、PII 检测与脱敏、提示注入检测。让代理输出"可信可入库"。</p>
+      <p class="small">竞争最少;EU AI Act 2026-08 透明义务生效构成合规顺风<span class="ref">[comp_aiact]</span>。</p>
+    </div>
+    <div class="wedge">
+      <h4>W3 · 网页→代理可读数据 API</h4>
+      <p>URL → 干净 Markdown/结构化字段,带缓存、robots 合规与速率治理,供代理实时引用网页内容。</p>
+      <p class="small">需求最大但已有强竞品(Jina/Firecrawl);只在前两者验证失败时进入。</p>
+    </div>
+  </div>
+  <p class="small" style="margin-top:2mm">楔子选择标准(全部须满足):① 目标关键词可验证搜索需求;② MoR 品类安全(文本/数据类,远离图像/语音生成禁区)<span class="ref">[comp_paddle_ban]</span>;③ 单人 ≤6 周可交付 MVP;④ 有定价页的独立竞品 &lt;5 个;⑤ 有结构性差异化(代理原生接口/合规/缓存经济学),而非单纯低价。</p>
+
+  <h3>为什么是现在</h3>
+  <ul class="tight">
+    <li><strong>需求侧:</strong>AI 代理市场 CAGR 44–49.6%<span class="ref">[market_agents]</span>;Gartner 预计 2026 年底 40% 的企业应用将内嵌任务型代理(2025 年不足 5%)。代理是 API 的天然消费者——它们不看 UI,只调接口。</li>
+    <li><strong>供给侧:</strong>通用 API 品类(截图、HTML→PDF、爬虫)已拥挤,但服务代理构建者的利基 API 被调研判定为 2026 年最不饱和的开发者细分<span class="ref">[arch_api]</span>。</li>
+    <li><strong>成本侧:</strong>"够用层级"模型价格三年下降 50–300 倍(DeepSeek V4 Flash $0.14/$0.28 每百万 token,缓存命中输入 $0.0028)<span class="ref">[cost_llm]</span><span class="ref">[cost_llm_trend]</span>,使 80%+ 毛利的 API 编排在 $29 价位成立。</li>
+  </ul>
+
+  <div class="callout line">
+    <h4>对标轨迹(全部为已核实的单人/双人产品)</h4>
+    <table class="tbl">
+      <thead><tr><th>产品</th><th>人数</th><th>轨迹</th><th>佐证</th></tr></thead>
+      <tbody>
+        <tr><td class="nm">ScreenshotOne</td><td>1</td><td>2022 创立 → 28 个月 $10k MRR → 37 个月 $20k MRR、400+ 付费客户</td><td>创始人公开里程碑<span class="ref">[arch_api]</span></td></tr>
+        <tr><td class="nm">Bannerbear</td><td>1</td><td>18 个月 $10k MRR → 6 年 $1M ARR;"一周写码、一周做内容"</td><td>公开收入页<span class="ref">[arch_api]</span></td></tr>
+        <tr><td class="nm">ScrapingBee</td><td>2</td><td>18 个月 $10k MRR → 2.5 年 $1M ARR → 2025-06 八位数全现金退出</td><td>收购方新闻稿(已验证)<span class="ref">[arch_api]</span></td></tr>
+      </tbody>
+    </table>
+    <p class="small">教训同样照单全收:ScrapingBee 主动砍掉 $9/$29 低价档以消除支持负担——本案最低付费档定为 $29 并保持免费层硬限额,即源于此。</p>
+  </div>
+</section>
+
+<!-- ================= 05 无人运营架构 ================= -->
+<section class="sheet">
+  <div class="eyebrow">05 · Autonomous Operations</div>
+  <h2>无人公司运营架构</h2>
+  <p class="lede">"零人工参与"指运营环节:获客、开通、计费、支持、监控全部由自动化系统与 AI 代理执行;人只保留两件事——写代码,和每周一次的复盘决策。</p>
+
+  <div class="flow">
+    <div class="node"><b>获客</b>免费工具集群 SEO + 开发者文档 + 市场目录 + AI 生成内容流水线(人审后发布)<span class="auto">全自动</span></div>
+    <div class="node"><b>转化</b>自助注册,免费层 300 调用/月,无需信用卡;文档即销售<span class="auto">全自动</span></div>
+    <div class="node"><b>收费</b>Paddle/LS 结账,税务、发票、退款策略全由 MoR 处理<span class="auto">全自动</span></div>
+    <div class="node"><b>服务</b>API 网关 · 多模型路由(DeepSeek/nano/Flash 级)· 用量计费 · 缓存<span class="auto">全自动</span></div>
+    <div class="node"><b>支持</b>文档 + 基于文档的 AI 客服,目标消解 85%;残余工单邮件异步处理<span class="auto">AI 代理</span></div>
+    <div class="node"><b>守护</b>正常运行监控 · 异常用量与滥用检测 · 成本告警 · 公开状态页<span class="auto">全自动</span></div>
+  </div>
+  <div class="humanband"><b>人类创始人(≤20 小时/周):</b>产品开发与迭代(~12h)· 内容/工具流水线的审核与发布(~4h)· 残余支持工单(模型测算峰值 {{scenarios.base.summary.max_human_hours_week|num1}}h)· 每周数据复盘与决策(1h)。AI 编码代理承担大部分实现工作,使 20 小时产出 2026 年之前 2–3 倍的工程量。</div>
+
+  <h3>支持负担的量化验证</h3>
+  <p>取行业保守上界——每百活跃用户每月 18 次支持接触(实证均值约 7 次)<span class="ref">[arch_support]</span>,AI 客服消解 85%(知识库本身可消解 40–60%,叠加文档训练的 AI 代理)<span class="ref">[arch_support]</span>,残余每单 8 分钟人工:</p>
+  <figure>
+    {{svg:hours.svg}}
+    <figcaption><b>人工运营小时/周(三情景,60 个月)。</b>基准情形峰值 {{scenarios.base.summary.max_human_hours_week|num1}}h/周;乐观情形(第 60 个月 {{scenarios.upside.summary.mrr_m60|usd}} MRR)峰值 {{scenarios.upside.summary.max_human_hours_week|num1}}h/周,仍在预算内——但已接近上限,届时收入足以购买外包支持或更强的自动化,属于幸福的烦恼。</figcaption>
+  </figure>
+
+  <h3>关键自动化设计决策</h3>
+  <ul class="tight">
+    <li><strong>多模型抽象层:</strong>路由层后置 DeepSeek / OpenAI nano / Gemini Flash-Lite 三家,任何一家封号、涨价或弃用模型,流量分钟级切换——对冲排名第 2 的生存风险(第 12 节)<span class="ref">[comp_output]</span>。</li>
+    <li><strong>输入/输出双向内容审核:</strong>免费的 moderation 端点 + 自建规则,既履行 API 条款义务防止封号,也满足公序良俗承诺<span class="ref">[comp_output]</span>。</li>
+    <li><strong>退款自动化:</strong>申请即退,不审不辩——把拒付率压在 0.5% 以下(Paddle 红线 0.75%,数字商品均值 0.54%)<span class="ref">[comp_chargeback]</span>,代价远小于失去收款渠道。</li>
+    <li><strong>免费层硬限额:</strong>300 调用/月 + 缓存优先路由,单个免费用户月成本压至 ~$0.08,杜绝"免费层失血"这一 AI wrapper 经典死因<span class="ref">[arch_wrapper]</span>。</li>
+  </ul>
+</section>
+
+<!-- ================= 06 市场分析 ================= -->
+<section class="sheet">
+  <div class="eyebrow">06 · Market</div>
+  <h2>市场分析:自下而上,拒绝大数字幻觉</h2>
+  <p class="lede">"万亿市场的 1%"是原案式的错误。对一人公司,有意义的不是 TAM 的大小,而是:这个利基里,一个人能拿到的实证收入带在哪里。</p>
+
+  <div class="kpis three">
+    <div class="kpi"><div class="v">$109–121 亿</div><div class="k"><b>TAM</b> · 全球 AI 代理市场 2026 年规模;2030 年 $470–532 亿,CAGR 44–49.6%(四机构共识区间)<span class="ref">[market_agents]</span></div></div>
+    <div class="kpi"><div class="v">$20–100 万 <small>ARR</small></div><div class="k"><b>SAM(实证口径)</b> · 单人利基 API 产品已验证的可达收入带:ScreenshotOne $20 万 ARR(3 年)— Bannerbear $100 万 ARR(6 年)<span class="ref">[arch_api]</span></div></div>
+    <div class="kpi blue"><div class="v">{{derived.base_arr_m36|usd}} <small>ARR</small></div><div class="k"><b>SOM(模型口径)</b> · 本模型基准情形第 36 个月年化收入;第 60 个月 {{derived.base_arr_m60|usd}}</div></div>
+  </div>
+
+  <h3>需求侧:渠道的实证产能</h3>
+  <ul class="tight">
+    <li><strong>首批客户从哪来:</strong>326 个项目的实证排序——口碑(40)、应用市场目录(33)、SEO(27)、社区/Reddit(20),全部强于 Product Hunt(8–9)与付费广告(4)<span class="ref">[channel_first]</span>。本案的获客组合即按此排序配置。</li>
+    <li><strong>SEO 的真实时间表:</strong>新域名第 6 个月 0–500 访客/月、第 12 个月 1k–5k、第 24 个月中位 3k–15k<span class="ref">[seo_timeline]</span>;且 AI Overviews 已使信息类首位 CTR 下降 ~58%——但交易类/长尾查询(开发者搜"X API"正属此类)受影响最小(−5–8%)<span class="ref">[seo_aio]</span>。模型的流量曲线(逻辑斯蒂上限 + 18 个月中点)直接取自这组基准。</li>
+    <li><strong>转化基准:</strong>访客→注册 3.0–4.5%、注册→付费 4.5–8.9%(ChartMogul 2026,200 个产品)<span class="ref">[funnel_chartmogul]</span>;模型基准取 3.8% × 5.5%,处于证据带中位偏保守。</li>
+    <li><strong>留存:</strong>开发者/基础设施工具月流失 1.8–3% 为全行业最低,微型企业客户 8.9% 最高<span class="ref">[churn_vertical]</span>;独立开发者客群混合后,模型取成熟期 4.8%/月,偏保守侧。</li>
+  </ul>
+
+  <h3>竞争与逆风(如实陈列)</h3>
+  <ul class="tight">
+    <li><strong>供给洪水:</strong>vibe-coding 使产品供给增加 2–3 倍(iOS 提交 2026Q1 同比 +84%,PH 月发布量 2.8 倍),而有真实使用量的产品数持平——分发取代开发成为唯一瓶颈<span class="ref">[arch_supply]</span>。本案以"分发可自动化"为第二权重选型,正是对此的直接回应。</li>
+    <li><strong>平台吸收:</strong>基础模型厂商持续上探应用层(OpenAI AgentKit 等已吞噬一批自动化 wrapper)<span class="ref">[arch_wrapper]</span>。缓解:选择厂商不愿做的"窄而深"基础设施位,护城河押在嵌入生产代码的切换成本上。</li>
+    <li><strong>价格通缩双刃剑:</strong>模型价格三年降 12 倍利好毛利,也同样降低竞争者成本<span class="ref">[cost_llm_trend]</span>——本案不做"API 套利",差异化在接口语义、合规与可靠性工程。</li>
+  </ul>
+</section>
+
+<!-- ================= 07 商业模式 ================= -->
+<section class="sheet">
+  <div class="eyebrow">07 · Business Model</div>
+  <h2>商业模式与定价</h2>
+  <p class="lede">自助订阅 + 用量计费,定价锚定实证付费带:月入 $500 以上的独立项目中 87% 定价在 $20–49/月,73% 为 B2B<span class="ref">[dist_indielaunches]</span>。</p>
+
+  <div class="pricing">
+    <div class="price-card">
+      <div class="nm">Free</div>
+      <div class="pr">$0</div>
+      <p>300 调用/月 · 无需信用卡 · 社区支持。作用:SEO 落地与开发者试用,硬限额控成本。</p>
+    </div>
+    <div class="price-card hot">
+      <div class="nm">Builder</div>
+      <div class="pr">$29<small>/月</small></div>
+      <p>1 万调用/月 · 全部端点 · 邮件支持。对标 ScrapingBee 教训设为最低付费档<span class="ref">[arch_api]</span>。</p>
+    </div>
+    <div class="price-card">
+      <div class="nm">Pro</div>
+      <div class="pr">$79<small>/月</small></div>
+      <p>5 万调用/月 · 更高速率限制 · Webhook · 99.9% SLO。</p>
+    </div>
+    <div class="price-card">
+      <div class="nm">Scale</div>
+      <div class="pr">$199<small>/月</small></div>
+      <p>20 万调用/月 + 超量按用量阶梯计费;年付 = 10 个月价格(年付可降流失约 30%)<span class="ref">[churn_vertical]</span>。</p>
+    </div>
+  </div>
+
+  <h3>单位经济(基准情形)</h3>
+  <figure>
+    {{svg:unit_econ.svg}}
+    <figcaption><b>每付费用户每月的价值流。</b>混合 ARPU {{unit_economics.arpu|usd}}(多数客户在 Builder 档、含年付折扣),扣除 MoR 渠道费(5% + $0.50)<span class="ref">[cost_mor]</span>、AI 推理(廉价模型路由 + 缓存)<span class="ref">[cost_llm]</span>、免费层分摊与基础设施后,单位毛利 {{unit_economics.waterfall.5.1|usd2}},毛利率 <b>{{unit_economics.gross_margin_pct}}%</b>——结构上属传统 SaaS(70–85%)而非 AI wrapper(25–35%)<span class="ref">[arch_wrapper]</span>,关键在于卖的是"调用次数"而非"无限聊天"。</figcaption>
+  </figure>
+
+  <p class="small">价格阶梯的换挡逻辑:免费层是 SEO 落地页与开发者试用入口,硬限额杜绝失血;Builder 是营收主力;Pro/Scale 承接用量增长——API 产品的扩张收入来自客户业务增长,无需销售介入,与零人工运营自洽。启动成本与现金安全分析见下页。</p>
+</section>
+
+<!-- ================= 08 财务模型 ================= -->
+<section class="sheet">
+  <div class="eyebrow">08 · Financial Model</div>
+  <h2>财务模型:三情景,60 个月</h2>
+  <p class="lede">逐月模拟获客漏斗 → 留存 → 损益 → 现金,所有参数标注证据来源;三情景分别锚定存活产品的 P25、中位与全体尝试的 P90。</p>
+
+  <figure>
+    {{svg:mrr_scenarios.svg}}
+    <figcaption><b>MRR 轨迹(60 个月)。</b>基准情形第 24 个月 {{scenarios.base.summary.mrr_m24|usd}}——刻意校准至实证存活中位 $4.2k 附近<span class="ref">[dist_freemius]</span>;保守情形 {{scenarios.conservative.summary.mrr_m24|usd}},对应"典型月份 $500"的大众结局<span class="ref">[dist_median500]</span>;乐观情形 {{scenarios.upside.summary.mrr_m24|usd}},对应 ScreenshotOne 级(全体尝试前 ~3–5%)。</figcaption>
+  </figure>
+
+  <h3>基准情形年度损益</h3>
+  {{gen:yearly_table_base}}
+  <p class="small">无人公司损益结构的特殊性:无工资、无办公室、固定成本 ~$55/月,因此净利润率高且"盈亏平衡"出现极早(第 {{scenarios.base.summary.breakeven_month}} 个月)——瓶颈从来不是烧钱速度,而是增长本身。创始人不领工资;按 20h/周折算,基准情形 36 个月累计利润相当于 <strong>{{derived.profit_per_hour_36m_base|usd}}/小时</strong>、60 个月 {{derived.profit_per_hour_60m_base|usd}}/小时的隐含时薪。</p>
+</section>
+
+<section class="sheet">
+  <div class="eyebrow">08 · Financial Model(续)</div>
+  <h2>启动成本、现金安全与退出选择权</h2>
+
+  <div class="cols2">
+    <div>
+      <h3 style="margin-top:0">启动成本</h3>
+      {{gen:startup_table}}
+      <p class="small">个人主体经 Paddle/Lemon Squeezy 收款,2026 年明确允许、$0 设立成本,MoR 为法律卖方<span class="ref">[cost_company]</span>;年收入超过 $5 万后再设立美国 LLC(Stripe Atlas $500 一次性 + $450–900/年)。启动资金 ¥30,000(预算区间中点)中,{{startup_total|usd}} 为一次性投入,其余全部作为运营缓冲与迭代弹药。</p>
+    </div>
+    <div>
+      <h3 style="margin-top:0">固定燃烧与现金安全</h3>
+      <p>月固定成本约 <strong>$55</strong>(域名摊销 + 合规工具 + 开发期 LLM 测试预算;基础设施月 1–6 全部运行在允许商用的免费层上)<span class="ref">[cost_burn]</span><span class="ref">[cost_infra]</span>。</p>
+      <p>这意味着:<strong>20,000 次模拟中现金跌破零的概率仅 {{montecarlo.p_cash_negative|pct2}}({{montecarlo.n_cash_negative|num}} 条路径)</strong>,最差 10% 情形的现金低点也有 {{montecarlo.cash_min_p10|usd}}。本模式的下行风险不是破产,而是时间的机会成本——这正是第 14 节设置硬性放弃标准的原因。</p>
+    </div>
+  </div>
+
+  <figure>
+    {{svg:cash_runway.svg}}
+    <figcaption><b>现金余额(USD)。</b>初始 $4,200(≈¥29,820,预算区间中点)扣除一次性启动 {{startup_total|usd}} 后,三情景现金曲线均不接近零;保守情形 60 个月累计利润 {{derived.cons_cum|usd}},乐观情形 {{derived.up_cum|usd}}。</figcaption>
+  </figure>
+
+  <h3>退出选择权(非计划,是期权)</h3>
+  <p>小型 SaaS 在 Acquire.com 的成交中位为 <strong>3.9× TTM 利润</strong>(SDE 口径;约合 2.5–3× 收入)<span class="ref">[market_exit]</span>。据此,基准情形第 3 年利润对应约 {{derived.exit_value_y3_base|usd}} 的可变现估值、第 5 年约 {{derived.exit_value_y5_base|usd}};乐观情形第 3 年约 {{derived.exit_value_y3_upside|usd}}。ScrapingBee 的全现金退出证明该路径对 API 产品真实存在<span class="ref">[arch_api]</span>。本计划以现金流为本,退出仅作为流动性期权纳入决策树,不作为目标倒推估值。</p>
+</section>
+
+<!-- ================= 09 蒙特卡洛 ================= -->
+<section class="sheet">
+  <div class="eyebrow">09 · Probabilistic View</div>
+  <h2>蒙特卡洛:先校准失败,再谈成功</h2>
+  <p class="lede">单条预测曲线是自欺。我们对 8 个关键参数设置分布并模拟 20,000 次,且先强制模型再现真实世界的失败率,才允许它输出成功概率。</p>
+
+  <h3>校准:模型 vs 实证横截面</h3>
+  {{gen:calibration_table}}
+  <p class="small">混合"未找到分发/PMF"因子(发生率 55%)后,模拟的第 24 个月 MRR 分布与三个独立数据集的横截面吻合<span class="ref">[dist_freemius]</span><span class="ref">[dist_indielaunches]</span>;模拟概率亦与调研独立给出的区间一致(12 个月内 ≥$1k:模型 {{montecarlo.prob_table.m12.ge_1000|pct}} vs 调研估计 15–25% 的下沿;24 个月内 ≥$5k:模型 {{montecarlo.prob_table.m24.ge_5000|pct}} vs 调研 10–15%)<span class="ref">[prob_synthesis]</span>。校准代码与种子(20260611)固定可复现。</p>
+
+  <figure>
+    {{svg:mc_fan.svg}}
+    <figcaption><b>MRR 分位带(20,000 条路径)。</b>中位路径缓慢爬行,P75 以上才出现陡峭增长——重尾是本行业的本质。</figcaption>
+  </figure>
+  <figure>
+    {{svg:mc_hist.svg}}
+    <figcaption><b>第 24 个月 MRR 分布(对数刻度)。</b>双峰结构:未找到分发的尝试堆积在左侧低位,找到分发的形成右侧长尾。</figcaption>
+  </figure>
+</section>
+
+<section class="sheet">
+  <div class="eyebrow">09 · Probabilistic View(续)</div>
+  <h2>里程碑达成概率</h2>
+  <p class="lede">替代原案"胜率 8–12%"的诚实口径:不同时点、不同高度的达成概率全表。</p>
+  {{gen:prob_table}}
+  <figure>
+    {{svg:prob_ladder.svg}}
+    <figcaption><b>概率阶梯。</b>"$1k MRR @ 24 个月"概率 {{montecarlo.prob_table.m24.ge_1000|pct}}:这就是单次尝试的真实胜率量级。36 个月累计利润分布:P25 {{montecarlo.cum_profit_36m.p25|usd}} / 中位 {{montecarlo.cum_profit_36m.p50|usd}} / P90 {{montecarlo.cum_profit_36m.p90|usd}},期望值 {{montecarlo.ev_cum_profit_36m|usd}}——期望为正且下行接近零(P5 仅 {{montecarlo.cum_profit_36m.p5|usd}}),不对称性是本计划成立的数学根基。</figcaption>
+  </figure>
+</section>
+
+<!-- ================= 10 投资视角 ================= -->
+<section class="sheet">
+  <div class="eyebrow">10 · Investment Lens</div>
+  <h2>投资视角:风险调整年化、胜率盈亏比与凯利仓位</h2>
+  <p class="lede">纯自有资金的精益创业没有外部投资人——投资人就是创始人本人,真正的本金是现金加时间。本节把这门生意当作一笔投资来审计,口径比原案更严苛:创始人时间按市场价计为成本。</p>
+
+  <p><strong>方法与假设:</strong>单轮(36 个月)总投入 = 启动现金 {{invest.assumptions.cash_stake|usd}} + 3,120 小时(20 小时/周 × 156 周)时间,机会成本按全球自由职业开发者活跃订单中位价 <strong>${{invest.assumptions.opp_rate|num}}/小时</strong>计<span class="ref">[invest_opp]</span>,合计 <strong>{{invest.econ.stake|usd}}</strong>;第 36 个月的退出残值按 Acquire.com 中位 3.9× TTM 利润再打五折(成交不确定性与流动性折扣)<span class="ref">[market_exit]</span>。对全部 20,000 条蒙特卡洛路径逐条计算净结果 X:<strong>胜率</strong> = P(X &gt; 0);<strong>盈亏比</strong> = 赢时平均盈利 ÷ 输时平均亏损;<strong>期望年化</strong> = (1 + E[X]/投入)<sup>1/3</sup> − 1;<strong>凯利比例 f*</strong> = 反复进行此类尝试时使长期复合增长最大的单轮投入占比。</p>
+
+  <table class="tbl">
+    <thead><tr><th style="width:30%">口径(由宽松到严苛再到实际策略)</th><th>胜率</th><th>盈亏比</th><th>期望净结果</th><th>期望倍数</th><th>期望年化</th><th>中位年化</th><th>Kelly f*</th></tr></thead>
+    <tbody>
+      <tr><td class="nm">A · 现金口径(时间计为零成本)</td><td>{{invest.cash.win_rate|pct}}</td><td>{{invest.cash.pl_ratio|num}} : 1</td><td>{{invest.cash.ev|usd}}</td><td>{{invest.cash.moic|mult}}</td><td>{{invest.cash.ann_ev|signpct0}}</td><td>{{invest.cash.ann_med|signpct0}}</td><td>1.00(封顶)</td></tr>
+      <tr><td class="nm">B · 经济口径 · 36 个月全程投入,无残值</td><td>{{invest.econ.win_rate|pct}}</td><td>{{invest.econ.pl_ratio|num1}} : 1</td><td>{{invest.econ.ev|usd}}</td><td>{{invest.econ.moic|mult}}</td><td>{{invest.econ.ann_ev|signpct0}}</td><td>{{invest.econ.ann_med|signpct0}}</td><td>{{invest.econ.kelly_f|num2}}</td></tr>
+      <tr><td class="nm">C · 经济口径 · 全程投入 + 审慎残值</td><td>{{invest.econ_exit.win_rate|pct}}</td><td>{{invest.econ_exit.pl_ratio|num1}} : 1</td><td>{{invest.econ_exit.ev|usd}}</td><td>{{invest.econ_exit.moic|mult}}</td><td>{{invest.econ_exit.ann_ev|signpct0}}</td><td>{{invest.econ_exit.ann_med|signpct0}}</td><td>{{invest.econ_exit.kelly_f|num2}}</td></tr>
+      <tr class="sel"><td class="nm">D · 实际策略:第 6/12 月硬性放弃门槛 + 残值 <span class="tag tag-blue">本计划口径</span></td><td><strong>{{invest.gated.win_rate|pct}}</strong></td><td><strong>{{invest.gated.pl_ratio|num1}} : 1</strong></td><td><strong>{{invest.gated.ev|usd}}</strong></td><td><strong>{{invest.gated.moic|mult}}</strong></td><td><strong>{{invest.gated.ann_ev|signpct0}}</strong></td><td>{{invest.gated.ann_med|signpct0}}</td><td><strong>{{invest.gated.kelly_f|num2}}</strong></td></tr>
+    </tbody>
+  </table>
+  <p class="small">口径 B/C/D 的投入均为 {{invest.econ.stake|usd}}(现金 + 时间);口径 D 按第 14 节的放弃标准对每条路径施加止损:第 6 月 MRR &lt; $150 止损({{invest.gated.share_kill_m6|pct0}} 的路径)、第 12 月 MRR &lt; $400 止损({{invest.gated.share_kill_m12|pct0}}),其余 {{invest.gated.share_continue|pct0}} 走完 36 个月。全部数字由 <code>model/montecarlo.py · compute_invest()</code> 计算,可复算。</p>
+
+  <div class="kpis">
+    <div class="kpi blue"><div class="v">{{invest.gated.win_rate|pct}}</div><div class="k">胜率(经济口径 · 实际策略;原案口径"现金退出胜率"为 8–12%)</div></div>
+    <div class="kpi"><div class="v">{{invest.gated.pl_ratio|num1}} : 1</div><div class="k">盈亏比(放弃纪律把口径 C 的 {{invest.econ_exit.pl_ratio|num1}}:1 提升至此)</div></div>
+    <div class="kpi"><div class="v">{{invest.gated.ann_ev|signpct0}}</div><div class="k">风险调整期望年化(时间按 ${{invest.assumptions.opp_rate|num}}/h 计为成本后的期望口径)</div></div>
+    <div class="kpi dark"><div class="v">f* = {{invest.gated.kelly_f|num2}}</div><div class="k">Kelly 最优投入比例(占"现金 + 可变现时间"总预算;半凯利 {{invest.gated.kelly_f|num2}}÷2 ≈ 0.36)</div></div>
+  </div>
+
+  <div class="callout warn">
+    <h4>最重要的一行字</h4>
+    <p>同样的项目,<strong>无放弃纪律</strong>的 36 个月全程投入在无残值口径下期望年化为 <strong>{{invest.econ.ann_ev|signpct0}}</strong>(口径 B,期望为负,跑输打工);加上<strong>硬性放弃门槛</strong>后期望年化升至 <strong>{{invest.gated.ann_ev|signpct0}}</strong>、盈亏比从 {{invest.econ_exit.pl_ratio|num1}}:1 升至 {{invest.gated.pl_ratio|num1}}:1。<strong>放弃标准不是悲观,而是本计划回报的第二来源</strong>——这就是第 14 节用整节篇幅写放弃标准的原因。</p>
+  </div>
+</section>
+
+<section class="sheet">
+  <div class="eyebrow">10 · Investment Lens(续)</div>
+  <h2>凯利曲线与"纪律溢价"</h2>
+  <p class="lede">凯利公式回答的问题:把(现金 + 可变现时间)视为总预算、把"36 个月一轮"的尝试视为可重复的下注,单轮投入多大比例才能使长期复合增长最大化。</p>
+
+  <figure>
+    {{svg:kelly.svg}}
+    <figcaption><b>长期复合年化 vs 投入比例 f(20,000 条路径,经济口径)。</b>实际策略(带放弃门槛)的凯利点 f* = {{invest.gated.kelly_f|num2}},对应风险调整复合年化 {{invest.gated.g_ann_at_kelly|signpct}}/年(半凯利 {{invest.gated.g_ann_at_half_kelly|signpct}});无放弃规则的全程投入凯利点仅 f* = {{invest.econ_exit.kelly_f|num2}},且满仓时复合年化为负——同一门生意,纪律不同,可承受的仓位相差近十倍。</figcaption>
+  </figure>
+
+  <ul class="tight">
+    <li><strong>凯利风险调整复合年化 {{invest.gated.g_ann_at_kelly|signpct}}/年:</strong>巧合的是与原案自称的"风险调整年化 5%"几乎相同——但原案数字没有任何计算过程,本数字由 201 个网格点上的 E[ln(1−f+f·M)] 极大化得出,逐行可复算。</li>
+    <li><strong>实务落地:</strong>f* = {{invest.gated.kelly_f|num2}} 是上限而非建议仓位;按业界惯例取半凯利 ≈ 0.36,即任何时点投入本项目的资源不超过"可承受风险现金 + 可支配业余时间"的约 1/3——与本计划"1–5 万元预算、分阶段投入、随时可停"的设计一致,亦即:<strong>不辞职、不借钱、不 all-in</strong>。</li>
+    <li><strong>机会成本敏感性:</strong>时间按 $15/h 计,胜率 {{invest.econ_exit_opp_low.win_rate|pct}}、期望年化 {{invest.econ_exit_opp_low.ann_ev|signpct0}};按 $40/h 计,胜率 {{invest.econ_exit_opp_high.win_rate|pct}}、期望年化 {{invest.econ_exit_opp_high.ann_ev|signpct0}}(全程投入口径)。诚实的推论:<strong>若创始人的替代时薪显著高于 $40/h,本项目在纯财务口径上不划算</strong>,做它的理由只剩资产属性(可出售、可复利、不可被解雇)与学习期权。</li>
+    <li><strong>与原案口径对照:</strong>原案"胜率 8–12%、盈亏比 6:1、年化 18%、风险调整年化 5%、MOIC 1.4x"为 VC 现金退出口径、无计算过程;本计划在<strong>更严苛</strong>的假设下(时间计为成本)给出:胜率 {{invest.gated.win_rate|pct}}、盈亏比 {{invest.gated.pl_ratio|num1}}:1、期望年化 {{invest.gated.ann_ev|signpct0}}、凯利风险调整复合年化 {{invest.gated.g_ann_at_kelly|signpct}}、期望倍数 {{invest.gated.moic|mult}}。两组数字口径不同,不可直接比较;可比的是方法:一个可复算,一个不可。</li>
+  </ul>
+
+  <div class="callout">
+    <h4>本节方法的三点局限(自我批评)</h4>
+    <p>① 放弃门槛是对已模拟路径的事后止损,未建模"止损后立即转投下一楔子"的期权价值,因此口径 D 偏保守;② 时间机会成本假设 20 小时/周可全额按市价变现,实际兼职市场存在摩擦,该假设偏严苛(两项偏差方向相反);③ 残值五折为审慎假设,微型 SaaS 挂牌成交率缺乏可信公开数据,故宁可低估。三点都按"宁可难看、不可失真"的原则处理。</p>
+  </div>
+</section>
+
+<!-- ================= 11 敏感性 ================= -->
+<section class="sheet">
+  <div class="eyebrow">11 · Sensitivity</div>
+  <h2>敏感性分析:什么真正决定成败</h2>
+  <p class="lede">对基准情形逐一扰动关键参数,观察第 36 个月 MRR 的响应。结论与渠道实证一致:这是一门分发生意,不是技术生意。</p>
+
+  <figure>
+    {{svg:sensitivity.svg}}
+    <figcaption><b>龙卷风图(第 36 个月 MRR,基准 {{scenarios.base.summary.mrr_m36|usd}})。</b>SEO 流量上限与转化率的影响远超其他变量;流失率次之;ARPU 的弹性最小——涨价救不了没有流量的产品。</figcaption>
+  </figure>
+
+  <h3>由此导出的资源配置纪律</h3>
+  <ul class="tight">
+    <li><strong>每周 20 小时中固定 30–50% 投入分发</strong>(免费工具、对比页、教程、目录提交)——Bannerbear"一周写码、一周做内容"的节律被证明可走到 $1M ARR<span class="ref">[arch_api]</span>。</li>
+    <li><strong>转化率优先于功能数:</strong>对比页/替代品页转化率(15–30%)是信息页(1–3%)的十倍<span class="ref">[funnel_chartmogul]</span>,内容流水线优先生产高转化页型。</li>
+    <li><strong>流失率护栏:</strong>月流失若持续高于 6.5%(微型企业基准上沿),按第 14 节触发复盘——通常意味着楔子选错了客群。</li>
+    <li><strong>不碰付费广告:</strong>326 个项目中仅 4 个以付费广告获得首批客户<span class="ref">[channel_first]</span>;Tony Dinh 实测 $600 广告支出仅 2 单转化。预算留给时间,不留给 CPC。</li>
+  </ul>
+</section>
+
+<!-- ================= 12 风险登记册 ================= -->
+<section class="sheet">
+  <div class="eyebrow">12 · Risk Register</div>
+  <h2>风险登记册(Top 10)</h2>
+  <p class="lede">两个真正的生存级风险都与"账号"有关:收款通道和模型 API。两者的解法都是架构与品类选择,而非金钱。</p>
+
+  <table class="tbl">
+    <thead><tr><th style="width:24%">风险</th><th style="width:9%">概率</th><th style="width:9%">影响</th><th>缓解措施(已纳入架构/流程)</th></tr></thead>
+    <tbody>
+      <tr><td class="nm">MoR 收款账号被拒/封禁(品类标记、拒付率超标)</td><td>中</td><td>致命</td><td>建站前书面预审品类;只做文本/数据类 API;申请即退的退款策略把拒付率压在 0.5% 以下;第二家 MoR 预先完成入驻<span class="ref">[comp_paddle_ban]</span><span class="ref">[comp_chargeback]</span></td></tr>
+      <tr><td class="nm">LLM API 账号封禁(用户滥用穿透)</td><td>中</td><td>致命</td><td>输入/输出双向审核(免费端点);用户 AUP;3 家供应商抽象层分钟级切换<span class="ref">[comp_output]</span></td></tr>
+      <tr><td class="nm">分发失败(SEO 不起量,模型中 55% 的尝试死于此)</td><td>高</td><td>高</td><td>多渠道并行(工具集群+目录+社区);第 14 节硬性放弃标准限制单楔子沉没成本;组合式连续尝试</td></tr>
+      <tr><td class="nm">平台吸收(基础模型厂商上探应用层)</td><td>中</td><td>高</td><td>选厂商不愿做的窄基础设施位;护城河=嵌入生产代码的切换成本+合规语义,而非模型能力<span class="ref">[arch_wrapper]</span></td></tr>
+      <tr><td class="nm">价格通缩使竞品以 10 倍低成本复制</td><td>高</td><td>中</td><td>不做 API 套利;随成本下降主动降价;差异化在可靠性工程与代理原生接口<span class="ref">[cost_llm_trend]</span></td></tr>
+      <tr><td class="nm">中国税务/外汇合规疏漏</td><td>不申报则中高</td><td>高</td><td>境外所得每年 3–6 月个税汇算申报;保留合同/发票/回款凭证;Payoneer 申报通道;超 $5 万额度凭真实单证结汇<span class="ref">[comp_china]</span></td></tr>
+      <tr><td class="nm">EU AI Act Art.50 透明义务(2026-08-02 生效)</td><td>低中</td><td>中</td><td>上线即内置 AI 交互披露与机器可读标记;一页合规备忘录;工具成本 $60–180/年<span class="ref">[comp_aiact]</span></td></tr>
+      <tr><td class="nm">AI 输出致损责任(Air Canada 判例:企业对 AI 输出全责)</td><td>低中</td><td>中高</td><td>UI+条款双重免责声明;不进入法律/医疗/金融建议场景;输出留痕<span class="ref">[comp_liability]</span></td></tr>
+      <tr><td class="nm">单人风险(创始人生病/中断)</td><td>中</td><td>中</td><td>全自动运营使系统可无人维持数周;基础设施即代码;运营手册与凭据托管;月度异地备份</td></tr>
+      <tr><td class="nm">监管再解释(出海 AI 服务被纳入境内监管/资本管制收紧)</td><td>低</td><td>高</td><td>严格不服务境内用户(不收 CNY、不做中文营销);税务外汇记录清白;收入达标后设 HK/US 实体的预案<span class="ref">[comp_china]</span></td></tr>
+    </tbody>
+  </table>
+  <p class="small">完整合规清单(一次性 ≈$0–500、经常性 ≈$150–800/年 + 税)及全部依据见 <code>research/compliance_risk.md</code>。</p>
+</section>
+
+<!-- ================= 13 合规与公序良俗 ================= -->
+<section class="sheet">
+  <div class="eyebrow">13 · Compliance & Ethics</div>
+  <h2>合规计划与公序良俗承诺</h2>
+  <p class="lede">合法、透明、不作恶不是成本项,是这家无人公司唯一的人格资产。</p>
+
+  <div class="cols2">
+    <div>
+      <h3>合规时间表(关键节点)</h3>
+      <table class="tbl">
+        <thead><tr><th>时点</th><th>义务与动作</th></tr></thead>
+        <tbody>
+          <tr><td class="nm">上线前</td><td>MoR 品类书面预审;隐私政策/ToS/Cookie 同意(Termly,$60–180/年);分包商公示页;输出免责声明<span class="ref">[comp_aiact]</span></td></tr>
+          <tr><td class="nm">2026-08-02</td><td>EU AI Act Art.50:所有 AI 交互界面披露"正在与 AI 交互"</td></tr>
+          <tr><td class="nm">2026-12-02</td><td>AI 生成内容机器可读标记(保留上游水印/C2PA 元数据,不剥离)</td></tr>
+          <tr><td class="nm">每年 3–6 月</td><td>中国个税年度汇算申报境外所得;结汇留存真实交易单证<span class="ref">[comp_china]</span></td></tr>
+          <tr><td class="nm">每季度</td><td>复查 API 条款变更、模型弃用日历、美国州隐私法新增、AI Act 实施细则</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <h3>公序良俗:明确不做的事</h3>
+      <ul class="tight">
+        <li>不做深度伪造、换脸、语音克隆(MoR 禁止 + EU 标记义务 + 伦理底线)<span class="ref">[comp_paddle_ban]</span></li>
+        <li>不做 NSFW、学术作弊工具、虚假评论/水军工具(FTC 欺骗执法重点)</li>
+        <li>不做无差别抓取个人数据/人脸(EU AI Act 第 5 条禁止性实践)</li>
+        <li>不进入医疗/法律/金融建议场景;营销不夸大 AI 能力(FTC "Operation AI Comply")</li>
+        <li>为用户创造可验证的真实价值:省下的工程小时数可量化,文档公开成本与限制,杜绝暗模式订阅陷阱——退订一键完成</li>
+      </ul>
+      <h3>对用户与社会的价值主张</h3>
+      <p class="small">本产品让缺乏大厂资源的独立开发者与小团队,以 $29/月获得过去需要专职工程师才能维护的基础设施能力——把 AI 代理浪潮的生产力红利向下分发给最长尾的建造者。这是"为人民做事"在一个 API 产品上能落到的最实处。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 14 里程碑 ================= -->
+<section class="sheet">
+  <div class="eyebrow">14 · Milestones & Kill Criteria</div>
+  <h2>阶段目标与放弃标准</h2>
+  <p class="lede">先定可分解的阶段目标,再用客观、可检验的标准衡量结果;放弃标准与达成目标同等重要——它们把 55% 的"找不到分发"风险从灾难变成学费。</p>
+
+  <div class="mile">
+    <div class="when">第 0–1 月</div>
+    <div class="what"><strong>验证冲刺。</strong>三个候选楔子各做落地页 + 交互 Demo + 候补名单;在开发者社区收集 ≥20 条定性反馈;验证目标关键词搜索量。
+      <div class="gate"><b class="go">通过:</b>某楔子候补 ≥100 人或预付意向 ≥5 个 → 进入开发。<b class="stop">否则:</b>换楔子重跑(最多 2 轮,每轮成本 &lt;$50)。</div></div>
+  </div>
+  <div class="mile">
+    <div class="when">第 2–3 月</div>
+    <div class="what"><strong>MVP 上线。</strong>核心端点 + 文档 + MoR 结账 + AI 客服 + 监控全链路;EU AI Act 披露内置;提交 20+ 目录;发布 3 个免费工具页。
+      <div class="gate"><b class="go">通过:</b>首批 10 个付费客户(对应模型第 3 个月基准)。<b class="stop">警戒:</b>注册→付费转化 &lt;2% → 重审定价与 onboarding。</div></div>
+  </div>
+  <div class="mile">
+    <div class="when">第 6 月</div>
+    <div class="what"><strong>渠道验证。</strong>免费工具页 ≥10 个;自然流量进入上升通道。
+      <div class="gate"><b class="go">通过:</b>MRR ≥ $300 且月环比为正。<b class="stop">放弃标准:</b>MRR &lt; $150 且自然流量连续 3 个月无增长 → 归档该楔子,启动下一候选(此时累计现金消耗 &lt;$600)。</div></div>
+  </div>
+  <div class="mile">
+    <div class="when">第 12 月</div>
+    <div class="what"><strong>$1k 关口。</strong>基准情形模型值 {{scenarios.base.summary.mrr_m12|usd}};概率口径:单楔子达成 ≥$1k 概率 {{montecarlo.prob_table.m12.ge_1000|pct}}。
+      <div class="gate"><b class="go">通过:</b>MRR ≥ $800 → 加倍内容流水线。<b class="stop">放弃标准:</b>MRR &lt; $400 → 挂牌 Acquire.com 出售或归档,复盘报告后启动下一楔子<span class="ref">[market_exit]</span>。</div></div>
+  </div>
+  <div class="mile">
+    <div class="when">第 24 月</div>
+    <div class="what"><strong>存活中位。</strong>目标 MRR ≥ $4,000(= 实证存活产品中位)<span class="ref">[dist_freemius]</span>;模型基准值 {{scenarios.base.summary.mrr_m24|usd}}。
+      <div class="gate"><b class="go">通过:</b>评估年付推广与第二产品线。<b class="stop">未达:</b>MRR $1–4k 仍为正期望资产,继续持有并降投入至维护态。</div></div>
+  </div>
+  <div class="mile">
+    <div class="when">第 36–60 月</div>
+    <div class="what"><strong>复利区。</strong>基准第 36 个月 {{scenarios.base.summary.mrr_m36|usd}} → 第 60 个月 {{scenarios.base.summary.mrr_m60|usd}};持有(累计利润 {{scenarios.base.summary.cum_profit_60m|usd}})或在 3.9× SDE 口径下择机退出。</div>
+  </div>
+
+  <h3>复盘纪律(自我革命的制度化)</h3>
+  <ul class="tight">
+    <li><strong>每周 1 小时数据复盘:</strong>流量/注册/付费/流失/工单五指标对照模型预测带,偏离 >30% 必须写下原因假设与下周动作。</li>
+    <li><strong>每月误差回归:</strong>用实际数据回填模型参数重跑 <code>run_all.py</code>,让预测随证据收敛——模型是活文档,不是一次性 PPT。</li>
+    <li><strong>每季度对照本计划书修订:</strong>包括承认错误的章节;任何与第 12 节风险登记册冲突的新事实,72 小时内更新缓解措施。</li>
+  </ul>
+</section>
+
+<!-- ================= 14 自我批评 ================= -->
+<section class="sheet">
+  <div class="eyebrow">15 · Self-Criticism & Limitations</div>
+  <h2>自我批评与局限性</h2>
+  <p class="lede">一份不写自身弱点的计划书不值得信任。以下是本计划最可能错的地方。</p>
+
+  <ul class="tight">
+    <li><strong>数据地基有软层。</strong>被广泛引用的"70% 低于 $1k / 中位 $4.2k"溯源到单一机构内容稿(RockingWeb),经 Freemius 转载获得了超出其方法论的权威性<span class="ref">[dist_freemius]</span>;最透明的数据集(IndieLaunches,326 项目)又是自选样本、偏乐观<span class="ref">[dist_indielaunches]</span>。我们的处理是取两者交集做校准带并整体偏保守,但真实基率可能比模型更差。</li>
+    <li><strong>明星案例不可外推。</strong>所有被核实的单人成功者都持有不可复制的分发资产(粉丝、退出履历、贵价域名)<span class="ref">[arch_unfair]</span>;对标 ScreenshotOne 轨迹隐含了"执行力达到该创始人水平"的假设,这本身无法事前验证。</li>
+    <li><strong>模型是简化。</strong>逻辑斯蒂流量曲线无法刻画 Google 核心更新式的断崖(实证有 −93% 的案例)<span class="ref">[arch_pseo]</span>;参数间相关性(差产品同时差转化、差留存)只用 flop 因子粗粒度处理;竞争是外生静态的,而真实竞争会回应你的存在。</li>
+    <li><strong>"零人工"有边界。</strong>实证上没有任何零founder小时的案例;本案的诚实表述是"运营边际人工趋零",战略、复盘与开发永远需要人。乐观情形下支持工时逼近 17h/周,届时需购买自动化或外包——这是计划内的成长烦恼,但仍是计划的弱点。</li>
+    <li><strong>时间窗口假设可能失效。</strong>"代理基础设施 2026 年不饱和"是本案最重要的单点判断;vibe-coding 供给洪水可能在 6–12 个月内填平该利基。缓解只有速度:第 0–1 月就完成验证冲刺,而非等待完美。</li>
+    <li><strong>每周 20 小时是硬约束也是硬风险。</strong>对比基准中的成功者多为全职;兼职节奏使所有时间表估计应整体放宽 1.3–1.5 倍——模型的 t_mid=18 个月已部分计入,但未必足够。</li>
+  </ul>
+
+  <div class="callout good">
+    <h4>尽管如此,为什么仍然值得做</h4>
+    <p>决策的数学结构罕见地干净:下行被封死(P5 累计结果 {{montecarlo.cum_profit_36m.p5|usd}},现金归零概率 {{montecarlo.p_cash_negative|pct2}}),上行是重尾(P90 累计 {{montecarlo.cum_profit_36m.p90|usd}}),期望为正({{montecarlo.ev_cum_profit_36m|usd}}/36 个月),且每次尝试产生可复用资产(代码、SEO 资产、读者、判断力)使后续尝试的成功概率单调上升。用 {{startup_total|usd}} 的一次性成本和被严格止损的时间,购买一张正期望、可重复抽取的彩票——这不是赌博,是纪律化的创业组合管理。</p>
+  </div>
+</section>
+
+<!-- ================= 15 附录 ================= -->
+<section class="sheet">
+  <div class="eyebrow">16 · Appendix</div>
+  <h2>数据来源与复算说明</h2>
+  <p class="lede">每个来源标注于正文引用处;调研原始报告(含可信度分级 [VERIFIED]/[SECONDARY]/[ESTIMATE])存于 <code>research/</code> 目录。</p>
+
+  <h3>复算方式</h3>
+  <div class="callout line">
+    <p style="margin:0"><code>python model/run_all.py</code> — 重跑三情景、20,000 次蒙特卡洛、敏感性分析并重新生成全部图表与 <code>output/results.json</code>;本文档由 <code>python model/build_html.py</code> 从同一 JSON 注入数字生成,不存在手填数字。模型文件:<code>engine.py</code>(月度模拟)· <code>montecarlo.py</code>(校准与模拟)· <code>scoring.py</code>(评分矩阵)· <code>params.py</code>(全部假设及来源)。随机种子 20260611 固定,结果可逐位复现。</p>
+  </div>
+
+  <h3>来源清单</h3>
+  {{gen:sources_list}}
+
+  <div class="footer-note">
+    <span>AI Breakthrough · 一人无人公司商业计划书 · 完全重制版</span>
+    <span>2026 年 6 月 12 日 · 数据截至 2026-06</span>
+  </div>
+</section>
+
+</div>
+</body>
+</html>
