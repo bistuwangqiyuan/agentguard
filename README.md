@@ -1,8 +1,14 @@
 # AgentGuard
 
-Solo zero-ops **agent output guardrail API** (W2) + reproducible AI Breakthrough business plan.
+Solo zero-ops **agent output guardrail API** (W2 from the AI Breakthrough plan) plus a reproducible business plan.
 
-- App: [`product/`](product/) — Next.js on Vercel
-- Live: https://agentguard-swart.vercel.app
-- BP model: [`model/`](model/)
-- Research: [`research/`](research/)
+- **Live app:** https://agentguard-swart.vercel.app
+- **Product (Next.js):** [`product/`](product/)
+- **BP model (Python):** [`model/`](model/)
+- **Research notes:** [`research/`](research/)
+
+```bash
+cd product && npm install && npm run dev
+```
+
+See [`product/README.md`](product/README.md) for deploy and env vars.
