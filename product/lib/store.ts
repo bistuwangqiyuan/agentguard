@@ -1,12 +1,9 @@
 /**
  * Dual-mode persistence:
- * - In-memory (default): works on Vercel for demo / first deploy without DB.
- * - Supabase REST (when SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY set).
- *
- * Honest caveat: memory store is per-instance and resets on cold start.
- * Use Supabase for production traffic (see supabase/schema.sql).
+ * - In-memory (default): demo only — NOT safe for paid entitlements.
+ * - Supabase REST (required for production billing).
  */
-import { PLANS, type PlanId } from "./plans";
+import { PLANS, type PlanId, type SubscriptionStatus } from "./plans";
 import { generateApiKey, sha256 } from "./crypto";
 
 export type User = {
@@ -14,8 +11,10 @@ export type User = {
   email: string;
   plan: PlanId;
   monthlyQuota: number;
-  lemonSubscriptionId?: string | null;
-  lemonCustomerId?: string | null;
+  paddleCustomerId?: string | null;
+  paddleSubscriptionId?: string | null;
+  subscriptionStatus: SubscriptionStatus;
+  cancelAtPeriodEnd: boolean;
   createdAt: string;
 };
 
@@ -34,8 +33,10 @@ type MemoryDb = {
   usersByEmail: Map<string, string>;
   keys: Map<string, ApiKeyRow>;
   keysByHash: Map<string, string>;
-  usage: Map<string, number>; // `${userId}:${YYYY-MM}`
+  usage: Map<string, number>;
   webhooks: Set<string>;
+  refunds: Array<Record<string, unknown>>;
+  contacts: Array<Record<string, unknown>>;
 };
 
 declare global {
@@ -51,6 +52,8 @@ function mem(): MemoryDb {
       keysByHash: new Map(),
       usage: new Map(),
       webhooks: new Set(),
+      refunds: [],
+      contacts: [],
     };
   }
   return globalThis.__agentguard_db;
@@ -100,6 +103,35 @@ export function storageMode(): "memory" | "supabase" {
   return supabaseConfigured() ? "supabase" : "memory";
 }
 
+function mapUser(row: Record<string, unknown>): User {
+  return {
+    id: String(row.id),
+    email: String(row.email),
+    plan: (row.plan as PlanId) || "free",
+    monthlyQuota: Number(row.monthly_quota ?? row.monthlyQuota ?? 300),
+    paddleCustomerId: (row.paddle_customer_id as string) || (row.paddleCustomerId as string) || null,
+    paddleSubscriptionId:
+      (row.paddle_subscription_id as string) || (row.paddleSubscriptionId as string) || null,
+    subscriptionStatus: (row.subscription_status as SubscriptionStatus) ||
+      (row.subscriptionStatus as SubscriptionStatus) ||
+      "none",
+    cancelAtPeriodEnd: Boolean(row.cancel_at_period_end ?? row.cancelAtPeriodEnd ?? false),
+    createdAt: String(row.created_at || row.createdAt || new Date().toISOString()),
+  };
+}
+
+function newUser(email: string): User {
+  return {
+    id: uid(),
+    email,
+    plan: "free",
+    monthlyQuota: PLANS.free.monthlyQuota,
+    subscriptionStatus: "none",
+    cancelAtPeriodEnd: false,
+    createdAt: new Date().toISOString(),
+  };
+}
+
 export async function getOrCreateUserByEmail(email: string): Promise<{
   user: User;
   created: boolean;
@@ -116,13 +148,7 @@ export async function getOrCreateUserByEmail(email: string): Promise<{
     if (existingId) {
       return { user: db.users.get(existingId)!, created: false };
     }
-    const user: User = {
-      id: uid(),
-      email: normalized,
-      plan: "free",
-      monthlyQuota: PLANS.free.monthlyQuota,
-      createdAt: new Date().toISOString(),
-    };
+    const user = newUser(normalized);
     db.users.set(user.id, user);
     db.usersByEmail.set(normalized, user.id);
     const { raw, hash, prefix } = generateApiKey();
@@ -152,6 +178,7 @@ export async function getOrCreateUserByEmail(email: string): Promise<{
       email: normalized,
       plan: "free",
       monthly_quota: PLANS.free.monthlyQuota,
+      subscription_status: "none",
     }),
   });
   if (!created.data?.[0]) throw new Error(created.error || "Failed to create user");
@@ -167,18 +194,6 @@ export async function getOrCreateUserByEmail(email: string): Promise<{
     }),
   });
   return { user, created: true, apiKeyPlain: raw };
-}
-
-function mapUser(row: Record<string, unknown>): User {
-  return {
-    id: String(row.id),
-    email: String(row.email),
-    plan: (row.plan as PlanId) || "free",
-    monthlyQuota: Number(row.monthly_quota ?? row.monthlyQuota ?? 300),
-    lemonSubscriptionId: (row.lemon_subscription_id as string) || null,
-    lemonCustomerId: (row.lemon_customer_id as string) || null,
-    createdAt: String(row.created_at || row.createdAt || new Date().toISOString()),
-  };
 }
 
 export async function getUserById(id: string): Promise<User | null> {
@@ -312,17 +327,15 @@ export async function incrementUsage(
   }
   const current = await getUsage(userId);
   const next = current.calls + n;
-  await sb("usage_monthly", {
-    method: "POST",
-    prefer: "resolution=merge-duplicates,return=minimal",
-    headers: { Prefer: "resolution=merge-duplicates" },
-    body: JSON.stringify({ user_id: userId, period, calls: next }),
-  });
-  // upsert via PATCH if exists
   if (current.calls > 0) {
     await sb(`usage_monthly?user_id=eq.${userId}&period=eq.${period}`, {
       method: "PATCH",
       body: JSON.stringify({ calls: next }),
+    });
+  } else {
+    await sb("usage_monthly", {
+      method: "POST",
+      body: JSON.stringify({ user_id: userId, period, calls: next }),
     });
   }
   return {
@@ -333,30 +346,45 @@ export async function incrementUsage(
   };
 }
 
-export async function setUserPlan(
+export async function setUserBilling(
   userId: string,
-  plan: PlanId,
-  lemon?: { subscriptionId?: string; customerId?: string }
+  patch: {
+    plan?: PlanId;
+    subscriptionStatus?: SubscriptionStatus;
+    paddleSubscriptionId?: string;
+    paddleCustomerId?: string;
+    cancelAtPeriodEnd?: boolean;
+  }
 ): Promise<User> {
-  const quota = PLANS[plan].monthlyQuota;
+  const plan = patch.plan;
+  const quota = plan ? PLANS[plan].monthlyQuota : undefined;
   if (!supabaseConfigured()) {
     const user = mem().users.get(userId);
     if (!user) throw new Error("User not found");
-    user.plan = plan;
-    user.monthlyQuota = quota;
-    if (lemon?.subscriptionId !== undefined) user.lemonSubscriptionId = lemon.subscriptionId;
-    if (lemon?.customerId !== undefined) user.lemonCustomerId = lemon.customerId;
+    if (plan) {
+      user.plan = plan;
+      user.monthlyQuota = PLANS[plan].monthlyQuota;
+    }
+    if (patch.subscriptionStatus !== undefined) user.subscriptionStatus = patch.subscriptionStatus;
+    if (patch.paddleSubscriptionId !== undefined)
+      user.paddleSubscriptionId = patch.paddleSubscriptionId;
+    if (patch.paddleCustomerId !== undefined) user.paddleCustomerId = patch.paddleCustomerId;
+    if (patch.cancelAtPeriodEnd !== undefined) user.cancelAtPeriodEnd = patch.cancelAtPeriodEnd;
     return user;
   }
+  const body: Record<string, unknown> = {};
+  if (plan) {
+    body.plan = plan;
+    body.monthly_quota = quota;
+  }
+  if (patch.subscriptionStatus !== undefined) body.subscription_status = patch.subscriptionStatus;
+  if (patch.paddleSubscriptionId !== undefined)
+    body.paddle_subscription_id = patch.paddleSubscriptionId;
+  if (patch.paddleCustomerId !== undefined) body.paddle_customer_id = patch.paddleCustomerId;
+  if (patch.cancelAtPeriodEnd !== undefined) body.cancel_at_period_end = patch.cancelAtPeriodEnd;
   await sb(`users?id=eq.${userId}`, {
     method: "PATCH",
-    prefer: "return=representation",
-    body: JSON.stringify({
-      plan,
-      monthly_quota: quota,
-      lemon_subscription_id: lemon?.subscriptionId ?? undefined,
-      lemon_customer_id: lemon?.customerId ?? undefined,
-    }),
+    body: JSON.stringify(body),
   });
   const u = await getUserById(userId);
   if (!u) throw new Error("User not found");
@@ -375,15 +403,15 @@ export async function findUserByEmail(email: string): Promise<User | null> {
   return r.data?.[0] ? mapUser(r.data[0]) : null;
 }
 
-export async function findUserByLemonSubscription(subId: string): Promise<User | null> {
+export async function findUserByPaddleSubscription(subId: string): Promise<User | null> {
   if (!supabaseConfigured()) {
     for (const u of mem().users.values()) {
-      if (u.lemonSubscriptionId === subId) return u;
+      if (u.paddleSubscriptionId === subId) return u;
     }
     return null;
   }
   const r = await sb<Array<Record<string, unknown>>>(
-    `users?lemon_subscription_id=eq.${encodeURIComponent(subId)}&select=*`
+    `users?paddle_subscription_id=eq.${encodeURIComponent(subId)}&select=*`
   );
   return r.data?.[0] ? mapUser(r.data[0]) : null;
 }
@@ -402,4 +430,46 @@ export async function claimWebhookEvent(eventId: string, eventName: string): Pro
   });
   if (r.status === 409 || (r.error && r.error.includes("duplicate"))) return false;
   return r.status >= 200 && r.status < 300;
+}
+
+export async function createRefundRequest(input: {
+  userId?: string;
+  email: string;
+  reason: string;
+}): Promise<string> {
+  const id = uid();
+  if (!supabaseConfigured()) {
+    mem().refunds.push({ id, ...input, status: "open", createdAt: new Date().toISOString() });
+    return id;
+  }
+  const r = await sb<Array<{ id: string }>>("refund_requests", {
+    method: "POST",
+    prefer: "return=representation",
+    body: JSON.stringify({
+      id,
+      user_id: input.userId || null,
+      email: input.email,
+      reason: input.reason,
+      status: "open",
+    }),
+  });
+  return r.data?.[0]?.id || id;
+}
+
+export async function createContactMessage(input: {
+  email: string;
+  subject: string;
+  body: string;
+}): Promise<string> {
+  const id = uid();
+  if (!supabaseConfigured()) {
+    mem().contacts.push({ id, ...input, createdAt: new Date().toISOString() });
+    return id;
+  }
+  const r = await sb<Array<{ id: string }>>("contact_messages", {
+    method: "POST",
+    prefer: "return=representation",
+    body: JSON.stringify({ id, ...input }),
+  });
+  return r.data?.[0]?.id || id;
 }

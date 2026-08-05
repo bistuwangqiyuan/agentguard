@@ -1,8 +1,7 @@
 import { DashboardClient } from "@/components/DashboardClient";
 import { getSessionUser } from "@/lib/auth";
-import { checkoutUrl, lemonConfigured } from "@/lib/lemon";
-import { getUsage, listKeysForUser } from "@/lib/store";
-import type { PlanId } from "@/lib/plans";
+import { billingReady } from "@/lib/paddle";
+import { getUsage, listKeysForUser, storageMode } from "@/lib/store";
 
 export const metadata = { title: "Dashboard" };
 
@@ -16,6 +15,8 @@ export default async function DashboardPage() {
       email: user.email,
       plan: user.plan,
       monthlyQuota: user.monthlyQuota,
+      subscriptionStatus: user.subscriptionStatus,
+      cancelAtPeriodEnd: user.cancelAtPeriodEnd,
       usage,
       keys: keys.map((k) => ({
         id: k.id,
@@ -26,18 +27,11 @@ export default async function DashboardPage() {
     };
   }
 
-  const checkout: Partial<Record<PlanId, string | null>> = {};
-  if (user) {
-    for (const p of ["builder", "pro", "scale"] as PlanId[]) {
-      checkout[p] = checkoutUrl(p, user.email);
-    }
-  }
-
   return (
     <DashboardClient
       initial={initial}
-      checkout={checkout}
-      billingReady={lemonConfigured()}
+      billingReady={billingReady()}
+      storageMode={storageMode()}
     />
   );
 }

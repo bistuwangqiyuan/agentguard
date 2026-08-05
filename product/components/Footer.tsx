@@ -20,8 +20,14 @@ export function Footer() {
           <Link href="/aup" className="hover:text-ink">
             AUP
           </Link>
-          <Link href="/docs" className="hover:text-ink">
-            Docs
+          <Link href="/refund" className="hover:text-ink">
+            Refunds
+          </Link>
+          <Link href="/subprocessors" className="hover:text-ink">
+            Subprocessors
+          </Link>
+          <Link href="/contact" className="hover:text-ink">
+            Contact
           </Link>
           <a href="/api/health" className="hover:text-ink">
             Status

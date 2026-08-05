@@ -4,6 +4,7 @@ const links = [
   { href: "/docs", label: "Docs" },
   { href: "/pricing", label: "Pricing" },
   { href: "/tools/pii-scanner", label: "Tools" },
+  { href: "/contact", label: "Contact" },
   { href: "/dashboard", label: "Dashboard" },
 ];
 

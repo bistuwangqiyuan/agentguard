@@ -25,6 +25,8 @@ export async function GET(req: Request) {
     email: user.email,
     plan: user.plan,
     monthlyQuota: user.monthlyQuota,
+    subscriptionStatus: user.subscriptionStatus,
+    cancelAtPeriodEnd: user.cancelAtPeriodEnd,
     usage,
     keys: keys.map((k) => ({
       id: k.id,

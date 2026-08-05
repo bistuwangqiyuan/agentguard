@@ -1,30 +1,51 @@
 "use client";
 
+import Script from "next/script";
 import { useState } from "react";
-import { PLANS, type PlanId } from "@/lib/plans";
+import { PLANS, type PlanId, type SubscriptionStatus } from "@/lib/plans";
 
 type Me = {
   email: string;
   plan: PlanId;
   monthlyQuota: number;
+  subscriptionStatus: SubscriptionStatus;
+  cancelAtPeriodEnd: boolean;
   usage: { period: string; calls: number };
   keys: Array<{ id: string; prefix: string; name: string; createdAt: string }>;
 };
 
+declare global {
+  interface Window {
+    Paddle?: {
+      Environment: { set: (env: string) => void };
+      Initialize: (opts: { token: string }) => void;
+      Checkout: {
+        open: (opts: Record<string, unknown>) => void;
+      };
+    };
+  }
+}
+
 export function DashboardClient({
   initial,
-  checkout,
   billingReady,
+  storageMode,
 }: {
   initial: Me | null;
-  checkout: Partial<Record<PlanId, string | null>>;
   billingReady: boolean;
+  storageMode: "memory" | "supabase";
 }) {
   const [email, setEmail] = useState("");
   const [me, setMe] = useState<Me | null>(initial);
   const [freshKey, setFreshKey] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [paddleReady, setPaddleReady] = useState(false);
+
+  async function refreshMe() {
+    const meRes = await fetch("/api/v1/me");
+    if (meRes.ok) setMe(await meRes.json());
+  }
 
   async function login() {
     setBusy(true);
@@ -38,8 +59,7 @@ export function DashboardClient({
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Login failed");
       if (data.apiKey) setFreshKey(data.apiKey);
-      const meRes = await fetch("/api/v1/me");
-      setMe(await meRes.json());
+      await refreshMe();
     } catch (e) {
       setError(e instanceof Error ? e.message : "Error");
     } finally {
@@ -55,8 +75,7 @@ export function DashboardClient({
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Rotate failed");
       setFreshKey(data.apiKey);
-      const meRes = await fetch("/api/v1/me");
-      setMe(await meRes.json());
+      await refreshMe();
     } catch (e) {
       setError(e instanceof Error ? e.message : "Error");
     } finally {
@@ -70,13 +89,64 @@ export function DashboardClient({
     setFreshKey(null);
   }
 
+  async function startCheckout(plan: PlanId) {
+    setBusy(true);
+    setError(null);
+    try {
+      const res = await fetch("/api/billing/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ plan }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || data.hint || "Checkout failed");
+      const c = data.checkout as {
+        priceId: string;
+        clientToken: string;
+        environment: string;
+        customData: Record<string, string>;
+        customerEmail: string;
+        successUrl: string;
+      };
+      if (!window.Paddle) throw new Error("Paddle.js not loaded");
+      window.Paddle.Environment.set(c.environment);
+      window.Paddle.Initialize({ token: c.clientToken });
+      window.Paddle.Checkout.open({
+        items: [{ priceId: c.priceId, quantity: 1 }],
+        customer: { email: c.customerEmail },
+        customData: c.customData,
+        settings: {
+          successUrl: c.successUrl,
+        },
+      });
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Error");
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function openPortal() {
+    setBusy(true);
+    setError(null);
+    try {
+      const res = await fetch("/api/billing/portal", { method: "POST" });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || data.hint || "Portal failed");
+      window.location.href = data.url;
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Error");
+    } finally {
+      setBusy(false);
+    }
+  }
+
   if (!me) {
     return (
       <div className="mx-auto max-w-lg px-5 py-16">
         <h1 className="text-3xl font-semibold tracking-tight">Get your API key</h1>
         <p className="mt-2 text-sub">
           Enter your email. No password — we create a Free plan and issue a key instantly.
-          (Magic-link email delivery is optional when Resend is configured.)
         </p>
         <div className="mt-6 flex gap-2">
           <input
@@ -100,9 +170,16 @@ export function DashboardClient({
   }
 
   const remaining = Math.max(0, me.monthlyQuota - me.usage.calls);
+  const paid = me.plan !== "free";
 
   return (
     <div className="mx-auto max-w-3xl px-5 py-16">
+      <Script
+        src="https://cdn.paddle.com/paddle/v2/paddle.js"
+        onLoad={() => setPaddleReady(true)}
+        strategy="afterInteractive"
+      />
+
       <div className="flex items-start justify-between gap-4">
         <div>
           <h1 className="text-3xl font-semibold tracking-tight">Dashboard</h1>
@@ -120,8 +197,15 @@ export function DashboardClient({
         </div>
       )}
 
-      <div className="mt-8 grid gap-4 sm:grid-cols-3">
+      {me.subscriptionStatus === "past_due" && (
+        <div className="mt-6 rounded-2xl border border-warn/40 bg-amber-50 p-4 text-sm">
+          Payment past due. Update your card in the billing portal to keep paid quotas.
+        </div>
+      )}
+
+      <div className="mt-8 grid gap-4 sm:grid-cols-4">
         <Stat label="Plan" value={PLANS[me.plan].name} />
+        <Stat label="Status" value={me.subscriptionStatus} />
         <Stat label="Period" value={me.usage.period} />
         <Stat label="Remaining" value={`${remaining} / ${me.monthlyQuota}`} />
       </div>
@@ -151,34 +235,51 @@ export function DashboardClient({
       </section>
 
       <section className="mt-10">
-        <h2 className="text-lg font-semibold">Upgrade</h2>
+        <h2 className="text-lg font-semibold">Billing</h2>
+        <p className="mt-2 text-sm text-sub">
+          Global payments via <strong>Paddle</strong> (Merchant of Record). Tax/VAT handled by
+          Paddle. Cancel anytime.
+        </p>
         {!billingReady && (
           <p className="mt-2 text-sm text-warn">
-            Lemon Squeezy is not configured on this deployment. Set variant env vars to enable
-            checkout.
+            {storageMode !== "supabase"
+              ? "Paid checkout requires Supabase (durable storage). Free keys still work."
+              : "Paddle is not configured yet — seller onboarding in progress. Free plan works."}
           </p>
         )}
         <div className="mt-4 flex flex-wrap gap-2">
           {(["builder", "pro", "scale"] as PlanId[]).map((id) => {
-            const url = checkout[id];
-            return url ? (
-              <a
+            const current = me.plan === id;
+            return (
+              <button
                 key={id}
-                href={url}
-                className="rounded-full bg-accent px-4 py-2 text-sm font-semibold text-white"
+                disabled={busy || current || !billingReady || !paddleReady}
+                onClick={() => startCheckout(id)}
+                className={`rounded-full px-4 py-2 text-sm font-semibold disabled:opacity-40 ${
+                  current
+                    ? "border border-ok bg-green-50 text-ok"
+                    : "bg-accent text-white"
+                }`}
               >
-                {PLANS[id].name} — ${PLANS[id].priceUsd}/mo
-              </a>
-            ) : (
-              <span
-                key={id}
-                className="rounded-full border border-dashed border-line px-4 py-2 text-sm text-sub"
-              >
-                {PLANS[id].name} (checkout pending)
-              </span>
+                {current ? `Current · ${PLANS[id].name}` : `${PLANS[id].name} — $${PLANS[id].priceUsd}/mo`}
+              </button>
             );
           })}
         </div>
+        {paid && (
+          <button
+            onClick={openPortal}
+            disabled={busy}
+            className="mt-4 rounded-full border border-line px-4 py-2 text-sm font-medium"
+          >
+            Manage subscription / update card
+          </button>
+        )}
+        <p className="mt-3 text-sm">
+          <a href="/refund" className="text-accent hover:underline">
+            Request a refund
+          </a>
+        </p>
       </section>
 
       {error && <p className="mt-4 text-sm text-danger">{error}</p>}
@@ -190,7 +291,7 @@ function Stat({ label, value }: { label: string; value: string }) {
   return (
     <div className="rounded-2xl border border-line bg-white/80 p-4">
       <div className="text-xs uppercase tracking-wide text-sub">{label}</div>
-      <div className="mt-1 text-xl font-semibold">{value}</div>
+      <div className="mt-1 text-lg font-semibold capitalize">{value}</div>
     </div>
   );
 }

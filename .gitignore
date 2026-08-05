@@ -32,3 +32,10 @@ output/pdf_pages/
 
 # Edge/user-data
 edge_*/
+
+# Private ops (PII / KYC notes — never commit)
+ops/*.local.md
+ops/paddle-onboarding.local.md
+
+# Local helper scripts
+_push_via_api.py

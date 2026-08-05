@@ -5,7 +5,7 @@ export default function DocsPage() {
     <div className="mx-auto max-w-3xl px-5 py-16 prose-doc">
       <h1 className="text-4xl font-semibold tracking-tight text-ink">Documentation</h1>
       <p className="mt-3 text-lg text-sub">
-        AgentGuard is a developer API that checks AI agent outputs before you persist them.
+        AgentGuard checks AI agent outputs before you persist them. Global billing via Paddle MoR.
       </p>
 
       <h2>Quickstart</h2>
@@ -13,70 +13,61 @@ export default function DocsPage() {
         <li>
           Open <a href="/dashboard">Dashboard</a>, enter your email, copy the Free API key.
         </li>
-        <li>Call <code>POST /api/v1/guard</code> with <code>Authorization: Bearer …</code>.</li>
-        <li>Inspect <code>ok</code> and structured <code>checks</code>.</li>
+        <li>
+          Call <code>POST /api/v1/guard</code> with <code>Authorization: Bearer …</code>.
+        </li>
+        <li>
+          Inspect <code>ok</code> and structured <code>checks</code>.
+        </li>
       </ol>
 
+      <pre>{`curl -X POST https://agentguard-swart.vercel.app/api/v1/guard \\
+  -H "Authorization: Bearer ag_live_..." \\
+  -H "Content-Type: application/json" \\
+  -d '{"text":"{\\"email\\":\\"a@b.com\\"}","mode":"redact"}'`}</pre>
+
       <h2>POST /api/v1/guard</h2>
-      <pre>{`{
-  "text": "{\\"user\\":\\"ada@example.com\\"}",
-  "schema": { "type": "object", "required": ["user"] },
-  "mode": "report",
-  "checks": ["schema", "pii", "injection"]
-}`}</pre>
       <ul className="list-disc space-y-2 pl-5">
         <li>
-          <code>mode</code>: <code>report</code> (default) or <code>redact</code> (returns{" "}
-          <code>text_out</code> with PII masked).
+          <code>mode</code>: <code>report</code> or <code>redact</code>
         </li>
         <li>
-          <code>schema</code>: optional JSON Schema; when present, <code>text</code> must be JSON.
+          <code>schema</code>: optional JSON Schema (text must be JSON)
         </li>
         <li>
-          Omitting <code>checks</code> runs all three.
+          <code>checks</code>: subset of <code>schema</code>, <code>pii</code>,{" "}
+          <code>injection</code>
         </li>
       </ul>
 
-      <h2>Auth</h2>
-      <p>
-        Prefer <code>Authorization: Bearer ag_live_…</code>. <code>X-API-Key</code> is also
-        accepted. Get usage with <code>GET /api/v1/me</code>.
-      </p>
+      <h2>Billing &amp; quotas</h2>
+      <p>Free 300 · Builder 10k · Pro 50k · Scale 200k calls per UTC calendar month.</p>
+      <ul className="list-disc space-y-2 pl-5">
+        <li>Checkout opens Paddle.js overlay from the Dashboard (requires Supabase + Paddle env).</li>
+        <li>
+          Webhook: <code>POST /api/webhooks/paddle</code> with <code>Paddle-Signature</code>{" "}
+          verification; idempotent by <code>event_id</code>.
+        </li>
+        <li>
+          <code>past_due</code>: update card via customer portal; continued failure may drop to Free.
+        </li>
+        <li>
+          Refunds: <a href="/refund">/refund</a> — executed in Paddle as MoR.
+        </li>
+      </ul>
 
       <h2>Errors</h2>
       <ul className="list-disc space-y-2 pl-5">
         <li>
-          <code>401 unauthorized</code> — missing/invalid key
-        </li>
-        <li>
-          <code>429 quota_exceeded</code> — monthly cap hit; <code>Retry-After</code> present
-        </li>
-        <li>
-          <code>413 payload_too_large</code> — text &gt; 100k chars
-        </li>
-        <li>
-          Injection LLM timeouts degrade to rules-only and may set <code>retryable: true</code> in
-          notes
+          <code>401</code> unauthorized · <code>429</code> quota_exceeded · <code>413</code>{" "}
+          payload_too_large
         </li>
       </ul>
 
-      <h2>Quotas</h2>
-      <p>Free 300 · Builder 10k · Pro 50k · Scale 200k calls per UTC calendar month.</p>
-
       <h2>EU AI Act transparency</h2>
       <p>
-        AgentGuard provides automated assistance for schema/PII/injection checks. It is{" "}
-        <strong>not</strong> a high-risk AI system under EU AI Act Annex III. When LLM features are
-        enabled, outputs may be probabilistically generated; humans remain responsible for
-        safety-critical decisions. This product does not provide legal, medical, or financial
-        advice.
-      </p>
-
-      <h2>Webhooks (Lemon Squeezy)</h2>
-      <p>
-        Point Lemon Squeezy to <code>/api/webhooks/lemon</code>. Signature verified via{" "}
-        <code>X-Signature</code> HMAC-SHA256 over the raw body. Events are idempotent by{" "}
-        <code>meta.event_id</code>.
+        Automated assistance for schema/PII/injection checks — not marketed as an Annex III
+        high-risk system. Probabilistic components may err; humans remain responsible.
       </p>
     </div>
   );

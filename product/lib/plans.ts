@@ -1,5 +1,13 @@
 export type PlanId = "free" | "builder" | "pro" | "scale";
 
+export type SubscriptionStatus =
+  | "none"
+  | "active"
+  | "trialing"
+  | "past_due"
+  | "canceled"
+  | "paused";
+
 export const PLANS: Record<
   PlanId,
   { name: string; priceUsd: number; monthlyQuota: number; blurb: string }
@@ -30,13 +38,21 @@ export const PLANS: Record<
   },
 };
 
-export function planFromVariantId(variantId: string | number | undefined): PlanId | null {
-  if (variantId == null) return null;
-  const v = String(variantId);
-  const map: Record<string, PlanId> = {
-    [process.env.LEMONSQUEEZY_VARIANT_BUILDER || ""]: "builder",
-    [process.env.LEMONSQUEEZY_VARIANT_PRO || ""]: "pro",
-    [process.env.LEMONSQUEEZY_VARIANT_SCALE || ""]: "scale",
+export function priceIdForPlan(plan: Exclude<PlanId, "free">): string | undefined {
+  const map: Record<Exclude<PlanId, "free">, string | undefined> = {
+    builder: process.env.PADDLE_PRICE_BUILDER,
+    pro: process.env.PADDLE_PRICE_PRO,
+    scale: process.env.PADDLE_PRICE_SCALE,
   };
-  return map[v] || null;
+  return map[plan] || undefined;
+}
+
+export function planFromPriceId(priceId: string | undefined | null): PlanId | null {
+  if (!priceId) return null;
+  const map: Record<string, PlanId> = {
+    [process.env.PADDLE_PRICE_BUILDER || ""]: "builder",
+    [process.env.PADDLE_PRICE_PRO || ""]: "pro",
+    [process.env.PADDLE_PRICE_SCALE || ""]: "scale",
+  };
+  return map[priceId] || null;
 }

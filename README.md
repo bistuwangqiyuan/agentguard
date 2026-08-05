@@ -1,14 +1,14 @@
 # AgentGuard
 
-Solo zero-ops **agent output guardrail API** (W2 from the AI Breakthrough plan) plus a reproducible business plan.
+Solo zero-ops **agent output guardrail API** (W2) + reproducible AI Breakthrough business plan.
 
 - **Live app:** https://agentguard-swart.vercel.app
-- **Product (Next.js):** [`product/`](product/)
-- **BP model (Python):** [`model/`](model/)
-- **Research notes:** [`research/`](research/)
+- **Product:** [`product/`](product/) — Next.js on Vercel · **Paddle MoR** billing
+- **BP model:** [`model/`](model/)
+- **Ops (Paddle KYC checklist):** [`ops/paddle-onboarding.example.md`](ops/paddle-onboarding.example.md)
 
 ```bash
 cd product && npm install && npm run dev
 ```
 
-See [`product/README.md`](product/README.md) for deploy and env vars.
+Paid global checkout requires Paddle seller activation + Supabase — see `product/README.md`.
